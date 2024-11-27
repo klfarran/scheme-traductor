@@ -27,7 +27,7 @@
 
 (define subcadena ;substring
   (lambda args
-    (if (and (arity-check (count-args args) 3 "subcadena") (contract-viol-check args "cadena, número, número" "subcadena"))
+    (if (and (arity-check (count-args args) 3 "subcadena") (contract-viol-check args "cadena número número" "subcadena"))
         (substring (car args) (cadr args) (caddr args))
          (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación") )))
 
@@ -35,7 +35,7 @@
 
 (define concatenar-cadena ;string-append
   (lambda args
-    (if (and (arity-check (count-args args) -1 "concatenar-cadena") (contract-viol-check args "cadena, cadena, ..." "concatenar-cadena"))
+    (if (and (arity-check (count-args args) -1 "concatenar-cadena") (contract-viol-check args "cadena cadena, ..." "concatenar-cadena"))
         (concatenar-cadena-helper args)
          (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación") ) ))
 

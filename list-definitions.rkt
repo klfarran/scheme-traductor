@@ -2,21 +2,19 @@
 
 (require "helper-definitions.rkt")
 (require "error-checkers.rkt")
-(require racket/trace)
 
 ;;;;
 ;;;; List Definitions
 ;;;;
 
 (define combinar ;cons
-  (lambda args ; all of our parameters, should be two: an atom or a list, and a list
+  (lambda args 
     (if (arity-check (count-args args) 2 "combinar") 
       (cons (car args) (cadr args) )
         (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
 
   (provide combinar)
 
-;need to deal with 'application error' we get from handing this function a list without a quote
  (define lista ;list
    (lambda args
      (cond
@@ -27,13 +25,13 @@
   (provide lista)
 
 (define concatenar ;append
-  (lambda args ;all parameters, can be any number >=0
-    (if (contract-viol-check args "(), ()... cualquiera" "concatenar")
+  (lambda args 
+    (if (contract-viol-check args "lista lista... cualquiera" "concatenar")
     (cond
       ((null? args) '())
       ((and (atom? (car args)) (= 1(count-args args))) (car args))
       (else (append (append-helper (all-but-last args)) (last-elem args))))
-        (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ));needed because append accepts >= 0 arguments
+        (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
    
   (provide concatenar)
 
@@ -46,23 +44,23 @@
   (provide longitud)
 
 (define pri ;car
-  (lambda args; all parameters, should be one: a list
+  (lambda args
     (if (and (arity-check (count-args args) 1 "pri") (contract-viol-check args "(cualquiera)" "pri")) 
-      (caar args)   ;;must be caar because our arguments 'args' are encased in a list
+      (caar args)  
        (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación") )))
   
   (provide pri)
 
 (define prri ;caar
-  (lambda args; all parameters, should be one: a list
+  (lambda args
     (if (and (arity-check (count-args args) 1 "prri") (contract-viol-check args "((cualquiera) cualquiera)" "prri"))
-      (caaar args)  ;;must be caaar because our arguments are encased in a list, so (car args) = list, and we want caar of the list
+      (caaar args) 
        (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
 
   (provide prri)
   
 (define prrri ;caaar
-  (lambda args; all parameters, should be one: a list
+  (lambda args
     (if (and (arity-check (count-args args) 1 "prrri") (contract-viol-check args "(((cualquiera)) cualquiera)" "prrri"))
     (cond
       ((caaaar args) ) )
@@ -71,15 +69,15 @@
   (provide prrri)
   
 (define prrrri ;caaaar
-  (lambda args; all parameters, should be one: a list
+  (lambda args
     (if (and (arity-check (count-args args) 1 "prrrri") (contract-viol-check args "((((cualquiera))) cualquiera)" "prrrri"))
-        (car(caaaar args))  ;must be caaaaar because our arguments are encased in a list, so (car args) = list, and we want caaaar of the list
+        (car(caaaar args)) 
        (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) )) 
 
   (provide prrrri)
   
 (define res ;cdr
-  (lambda args; all parameters, should be one: a list
+  (lambda args
    (if (and (arity-check (count-args args) 1 "res") (contract-viol-check args "(cualquiera, al menos 1)" "res"))
       (cdar args)
        (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
@@ -87,7 +85,7 @@
   (provide res)
 
 (define ress ;cddr
-  (lambda args; all parameters, should be one: a list
+  (lambda args
    (if (and (arity-check (count-args args) 1 "ress") (contract-viol-check args "(cualquiera, al menos 2)" "ress"))
      (cddar args) 
       (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
@@ -95,7 +93,7 @@
   (provide ress)
 
 (define resss ;cdddr
-  (lambda args; all parameters, should be one: a list
+  (lambda args
    (if (and (arity-check (count-args args) 1 "resss") (contract-viol-check args "(cualquiera, al menos 3)" "resss"))
      (cdddar args)
       (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
@@ -103,7 +101,7 @@
   (provide resss)
 
 (define ressss ;cddddr
-  (lambda args; all parameters, should be one: a list
+  (lambda args
     (if (and (arity-check (count-args args) 1 "ressss") (contract-viol-check args "(cualquiera, al menos 4)" "ressss"))
       (cdr(cdddar args))
        (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
@@ -121,7 +119,7 @@
 
 (define resp ;cdar
   (lambda args
-    (if (and (arity-check (count-args args) 1 "resp")(contract-viol-check args "(lista, cualquiera, ...)" "resp"))
+    (if (and (arity-check (count-args args) 1 "resp")(contract-viol-check args "(lista cualquiera cualquiera ...)" "resp"))
        (cdar (car args)) 
         (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
 

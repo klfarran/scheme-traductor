@@ -2,7 +2,6 @@
 
 (require "helper-definitions.rkt")
 (require "error-checkers.rkt")
-(require racket/trace)
 
 ;;;;
 ;;;; Boolean/ Conditional Definitions
@@ -22,24 +21,24 @@
 
 ;;Procedures for determining equality
 
-(define ¿ig? ;calls eq?, which checks if two values represent the same object in memory 
-  (lambda args ;all of our parameteres, should be two:an atom or a list, and an atom or a list 
+(define ¿ig? ;eq?
+  (lambda args 
    (if (arity-check (count-args args) 2 "¿ig?") 
        (eq? (car args) (cadr args))
          (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
 
   (provide ¿ig?)
 
-(define ¿igv? ;calls eqv?, works the same as eq? but always returns true for (equal) primitive values 
-  (lambda args ;all of our parameters, should be two: an atom or a list, and an atom or a list
+(define ¿igv? ;eqv?
+  (lambda args 
    (if (arity-check (count-args args) 2 "¿igv?")
        (eqv? (car args) (cadr args))
         (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
 
   (provide ¿igv?)
 
-(define ¿igual? ;calls equal?, which checks equality (by eqv? function) between two atoms or between two lists by calling eqv? on all elements in the list 
-  (lambda args ;all of our parameters, should be two: an atom or a list, and an atom or a list
+(define ¿igual? ;equal?
+  (lambda args 
    (if (arity-check (count-args args) 2 "¿igual?")
        (equal? (car args) (cadr args))
         (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
@@ -68,7 +67,7 @@
    (provide sino) 
 
 (define y ;and 
-  (lambda args ;all parameters, should be two: an atom or a list and an atom or a list
+  (lambda args 
     (if (arity-check (count-args args) -1 "y")
      (cond 
       ((null? (car args)) 'cierto) ; no #f element(s)
@@ -81,7 +80,7 @@
    (provide y)
 
 (define o ;and 
-  (lambda args ;all parameters, should be two: an atom or a list and an atom or a list
+  (lambda args
     (if (arity-check (count-args args) -1 "o")
      (cond 
       ((null? (car args)) 'falso) ; no #t element(s)
@@ -95,9 +94,8 @@
    (provide o)
 
 (define no ;not
-  (lambda args ;all parameters, should be one: an atom or a list (or a condition, which is technically an atom)
+  (lambda args 
    (if (arity-check (count-args args) 1 "no") 
-     ;(not (car args) )
        (if (¿falso? (car args)) 'cierto 'falso)
         (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación") )))
 
@@ -118,14 +116,14 @@
   (lambda args
     (if (arity-check (count-args args) 1 "¿cierto?")
     (cond
-      ((eq? #t (car args)) 'cierto)
+      ((eq? 'cierto (car args)) 'cierto)
        (else 'falso) )
         (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
 
   (provide ¿cierto?)
 
 (define ¿nulo? ;null?
-  (lambda args ; all of our parameters, should be one:either an atom or a list
+  (lambda args 
    (if (arity-check (count-args args) 1 "¿nulo?") 
     (cond
       ((null? (car args)) 'cierto) 
@@ -134,12 +132,4 @@
 
   (provide ¿nulo?)
 
-(define-syntax condición
-  (syntax-rules ()
-    ((condición (condition result) ...)
-     ;(cond ((and (¿cierto? condition) (not(¿falso? condition))) result)
-     (cond ((eq? condition 'cierto) result)
-           ...))))
-
-(provide condición)
 

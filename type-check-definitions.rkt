@@ -2,14 +2,13 @@
 
 (require "helper-definitions.rkt")
 (require "error-checkers.rkt")
-(require racket/trace)
 
 ;;;;
 ;;;; Type-checking Definitions
 ;;;;
 
 (define ¿átomo? ;atom?
-  (lambda args ;all parameters, should be one: an atom or a list
+  (lambda args 
     (if (arity-check (count-args args) 1 "¿átomo?")
        (cond
         ((atom? (car args)) 'cierto)

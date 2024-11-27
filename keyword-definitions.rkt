@@ -117,3 +117,11 @@
       (error "\n rastreo-definir: se esperaba dos argumentos: un símbolo y una expresión")])))    
 
 (provide rastreo-definir)
+
+(define-syntax condición
+  (syntax-rules ()
+    ((condición (condition result) ...)
+     (cond ((eq? condition 'cierto) result)
+           ...))))
+
+(provide condición)
