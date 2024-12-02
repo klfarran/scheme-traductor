@@ -1,7 +1,7 @@
 #lang scheme
 
 (require "helper-definitions.rkt")
-(require "error-checkers.rkt")
+(require "err-chks.rkt")
 (require "conditional-definitions.rkt")
 
 ;;;;
