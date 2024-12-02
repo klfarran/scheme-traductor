@@ -247,6 +247,20 @@
 
 (provide concatenar-cadena-helper)
 
+;helper function for o
+;if we see a #t element, return 'cierto, otherwise, if no #t elements present, return 'falso
+(define o-helper
+  (lambda args
+    (cond
+      ((null? (car args)) 'falso)
+      ((eq? (caar args) #t) ' cierto)
+      ((eq? (car args) 'cierto) 'cierto)
+      ((and (eq? (count-args args) 1) (false? (car args))) 'falso)
+      ((and (eq? (count-args args) 1) (eq? (car args) 'falso)) 'falso)
+      (else (o-helper (cdar args))))))
+
+(provide o-helper)
+
 
 ;helper function to determine if the given args 'my-args' to the procedure 'proc-id' match the
   ;desired conteact that is required for that function

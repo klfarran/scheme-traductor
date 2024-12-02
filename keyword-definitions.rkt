@@ -12,7 +12,7 @@
 (define-syntax definir
   (lambda (stx)
     (syntax-case stx ()
-      ;CASE 1-  (define (id args) body ...+)
+      ;CASE 1-  (define (id args) body ... +)
        [(_ (sym . params) expr)
        (if (not (identifier? #'sym)) ; ensure sym si a valid identifier
            (error (string-append "\n definir: el primer argumento debe ser un identificador\noccurido en: " (format "~a" (syntax->datum #'sym))))     
@@ -41,9 +41,14 @@
                      (apply proc args)  )))
              ;CASE 2b- expr is not lambda expression- bind normally
                    #'(define sym expr)))) ]
-      ;CASE 3- given any number of parameters that is not what was expected 
+      ;CASE 3- given any number of parameters that is not what was expected
+      [(_ sym) ;given 1 param only
+       (error "\n definir: se esperaba dos argumentos: un símbolo y una expresión")]
+      [(_ sym ...) ;given 1+ params (and 2 params was already 'caught' above)
+       (error "\n definir: se esperaba dos argumentos: un símbolo y una expresión")]
+      ;CASE 4- given any other (incorrect) form
       [_  
-       (error "\n  definir: se esperaba dos argumentos: un símbolo y una expresión")])))
+       (error "\n  definir: sintaxis no válida")])))
 
 
 (provide definir)
@@ -76,10 +81,28 @@
         (syntax->list #'((var val) ...)))
        #'(let proc-id ((var val) ...) body ...))]
       [_
-       (error "\n  sea: se esperaba una lista de enlaces y una o más expresiones de cuerpo\n un enlace válido debe tener la forma: [identificador valor]")])))
+       (error "\n  sea: sintaxis no válida\n  se esperaba una lista de enlaces y una o más expresiones de cuerpo\n un enlace válido debe tener la forma: [identificador valor]")])))
 
  (provide sea)
 
+(define-syntax sea* ;let*
+  (lambda (stx)
+    (syntax-case stx ()
+      ;CASE 1- (let* ([id val-expr] ...) body ...+)
+      [(_ ((var val) ...) body ...)
+         ; check that each `var` is a valid identifier
+         (for-each
+          (lambda (binding)
+              (unless (identifier? (car (syntax->list binding))) ; get just 'var' out of the pair and make sure its a valid identifier
+                (error (string-append "\n  sea*: par de enlaces no válido\n el primer argumento debe ser un identificador\nen: " (format "~a" (syntax->datum binding)))))
+              (unless (not (identifier? (cadr (syntax->list binding)))) ; get just 'val' out of the pair and make sure its not a valid identifier
+                (error (string-append "\n  sea*: par de enlaces no válido\n el segundo argumento debe ser un valor\nen: " (format "~a" (syntax->datum binding)))))  ) 
+          (syntax->list #'((var val) ...))) ; convert the list of bindings to syntax objects
+         #'(let* ((var val) ...) body ...)] ; expand to `let*`
+      [_
+       (error "\n  sea*: se esperaba una lista de enlaces y una o más expresiones de cuerpo\n un enlace válido debe tener la forma: [identificador valor]")])))
+
+ (provide sea*)
 
 (define-syntax ¡establezca! ;set!
   (lambda (stx)
@@ -119,9 +142,19 @@
 (provide rastreo-definir)
 
 (define-syntax condición
-  (syntax-rules ()
-    ((condición (condition result) ...)
-     (cond ((eq? condition 'cierto) result)
-           ...))))
+  (lambda (stx)
+    (syntax-case stx (sino) ;need to specify sino (else) as a keyword to be recognized in condicion statement (otherwise its an unbound id)
+      [(_ (condition result) ... (sino expr))
+       #'(cond ((eq? condition 'cierto) result) ... (else expr))]
+      [(_ (condition result) ...)
+       #'(cond ((eq? condition 'cierto) result) ...)]
+      [_ 
+       (error 'condición "sintaxis no válida: se esperaba una lista de condiciones y resultados")])))
 
 (provide condición)
+
+(define-syntax requerir ; require- maybe not necessary however
+  (syntax-rules ()
+    [(_ args) (require args)] ))
+
+(provide requerir)

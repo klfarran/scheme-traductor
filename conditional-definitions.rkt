@@ -23,8 +23,10 @@
 
 (define ¿ig? ;eq?
   (lambda args 
-   (if (arity-check (count-args args) 2 "¿ig?") 
-       (eq? (car args) (cadr args))
+   (if (arity-check (count-args args) 2 "¿ig?")
+      (cond
+      ((eq? (car args) (cadr args)) 'cierto)
+      ('falso) )
          (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
 
   (provide ¿ig?)
@@ -32,7 +34,9 @@
 (define ¿igv? ;eqv?
   (lambda args 
    (if (arity-check (count-args args) 2 "¿igv?")
-       (eqv? (car args) (cadr args))
+      (cond
+      ((eqv? (car args) (cadr args)) 'cierto)
+      ('falso) )
         (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
 
   (provide ¿igv?)
@@ -40,7 +44,9 @@
 (define ¿igual? ;equal?
   (lambda args 
    (if (arity-check (count-args args) 2 "¿igual?")
-       (equal? (car args) (cadr args))
+      (cond
+      ((equal? (car args) (cadr args)) 'cierto)
+      ('falso) )
         (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
 
   (provide ¿igual?)
@@ -57,14 +63,6 @@
     (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación"))))
 
   (provide si) 
-
-(define sino ;else
-  (lambda args
-    (if (arity-check (count-args args) 1 "sino")
-      (car args)
-       (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación") )))
-
-   (provide sino) 
 
 (define y ;and 
   (lambda args 
@@ -83,12 +81,13 @@
   (lambda args
     (if (arity-check (count-args args) -1 "o")
      (cond 
-      ((null? (car args)) 'falso) ; no #t element(s)
+      ((null? (car args)) 'falso) ; at least 1 #t element not found 
       ((eq? (car args) #t) 'cierto) ; if any element is `cierto`, which evaluates to `#t`, return `cierto.
-      ((and (eq? (count-args args) 1) (eq? (car args) #t) 'cierto))
+      ((eq? (car args) 'cierto) 'cierto)
       ((and (eq? (count-args args) 1) (false? (car args))) 'falso)
-      ((eq? (count-args args) 1) (car args)) ;only one thing left in the list and its non #t #f, like a number, for example
-      (else (o (cadr args))) )
+      ((and (eq? (count-args args) 1) (eq? (car args) 'falso)) 'falso)
+      ((number? (car args)) (car args)) ;only one thing left in the list and its non #t #f, like a number, for example
+      (else (o-helper (cdr args))) )
        (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación"))))
 
    (provide o)
