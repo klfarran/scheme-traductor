@@ -3,6 +3,7 @@
 (require "helper-definitions.rkt")
 (require "err-chks.rkt")
 
+
 ;;;;
 ;;;; List Definitions
 ;;;;
@@ -48,7 +49,35 @@
     (if (and (arity-check (count-args args) 1 "pri") (contract-viol-check args "(cualquiera)" "pri")) 
       (caar args)  
        (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación") )))
-  
+
+;(define-syntax pri ;pri (supongo)
+ ; (lambda (stx)
+  ;  (syntax-case stx ()
+   ;   [(_ args)
+    ;      (if ;(and
+     ;          (macro-arity-check (count-args (syntax->datum #'args)) 1 "pri" )
+      ;     ;(contract-viol-check (syntax->datum #'args) "(cualquiera)" "pri"))
+       ;    (caar (syntax->datum #'args)) (error "error"))
+        ;  ]
+   ;   [_ 
+    ;   (error "\n pri: syntax no valido")])))
+
+ (define-syntax pritest ;pri (supongo)
+  (lambda (stx)
+    (syntax-case stx ()
+     [(_ args)
+      (begin
+          #'(if ;(and
+               (arity-check (count-args args) 1 "pri" )
+           ;(contract-viol-check (syntax->datum #'args) "(cualquiera)" "pri"))
+           (caar (syntax->datum #'args)) (error "error")) )
+          ]
+      [(_ arg1 arg2)
+       (error "boo")]
+      [_ 
+       (error "\n pri: syntaxis no valido")])))
+
+
   (provide pri)
 
 (define prri ;caar
