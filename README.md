@@ -1,25 +1,85 @@
 # scheme traductor
-- Official project for scheme-traductor: write in scheme, but in Spanish! 
-- Designed for use with Dr. Racket graphical interface
+### Scroll down for English
+- Proyecto oficial para _scheme-traductor_: escribir programas en el lenguaje de programación _scheme_, ¡pero en español!
+- Diseñado para ser utilizado con la interfaz gráfica de [Dr Racket](https://www.racket-lang.org/) 
+
+## Instrucciones de instalación para el sistema operativo Windows
+- Navega a [Descargar Dr Racket](https://download.racket-lang.org)
+  - En el menú desplegable 'Platform', selecciona la versión de Windows adecuada para su computadora
+  - Haz clic en el botón "racket-...exe"
+  - Ejecuta el archivo "racket....exe"
+
+- Descarga la carpeta _scheme-traductor_ de la rama 'main' de este repositorio
+  - Copia la carpeta _scheme-traductor_ en la carpeta Racket/collects
+  - Suponiendo que la unidad C: sea la unidad principal de tu computadora, generalmente se encuentra _Racket/colects_ en C:\Archivos de programa\Racket
+
+- Elimina la carpeta 'Racket' ubicada en C:\Usuarios\*nombre de usuario*\AppData\Roaming\Racket
+  - Crea una carpeta nueva llamada 'Racket' dentro de la carpeta C:\Usuarios\*nombre de usuario*\AppData\Roaming
+  - Descarga el archivo _racket-prefs.rktd_ de la rama 'main' de este repositorio
+  - Pon el archivo _racket-prefs.rktd_ dentro de la carpeta 'Racket' que creaste
+ 
+-Abre Dr Racket, haz clic en _Run_ en la esquina superior derecha, ¡y ya está!
+    - Ten en cuenta que todos los archivos deben comenzar (automáticamente) con las siguientes dos líneas para usar _scheme traductor_
+         - #lang scheme
+        - (require scheme-traductor/scheme-traductor)
+
+## Instrucciones de instalación para el sistema operativo Mac
+- Navega a [Descargar Dr Racket](https://download.racket-lang.org)
+  - En el menú desplegable 'Platform', selecciona la versión de MacOS adecuada para su computadora
+  - Haz clic en el botón “racket-...dmg”
+  - En el cuadro de diálogo de abrir/guardar que aparece, elige guardar el archivo "racket-...dmg"
+  - Haz doble clic en el archivo de imagen de disco racket....dmg que guardaste
+  - Desde la carpeta del disco que se abre, arrastra la carpeta Racket vXXXX (donde XXXX es el número de la versión actual de DrRacket) a la carpeta _Aplicaciones_
+ 
+- Descarga la carpeta _scheme-traductor_ de la rama 'main' de este repositorio
+  - Copia la carpeta _scheme-traductor_ en la carpeta Racket/collects
+  - La carpeta _collects_ deber estar ubicada en _disco duro_/Aplicaciones/Racket vXXXX, donde XXXX es el número de la versión actual de Dr Racket
+
+- Abre la aplicación _Terminal_ y asegúrate de que toda la jerarquía /Applications/Racket vXXXX/collects sea legible y ejecutable por todos, pero no escribible por todos, ejecutando el comando:
+  - chmod -R go+rx-w /Applications/Racket\ vXXXX/collects
+ 
+- Si existen, elimina los archivos:
+  - _disco duro_/Usuarios/_nombre de usuario_/Biblioteca/Preferencias/org.plt-scheme.DrScheme.plist
+  - _disco duro_/Usuarios/_nombre de usuario_/Biblioteca/Preferencias/org.plt-scheme.prefs.ss
+  - _disco duro_/Usuarios/_nombre de usuario_/Biblioteca/Preferencias/org.racket-lang.DrRacket.plist
+  - _disco duro_/Usuarios/_nombre de usuario_/Biblioteca/Preferencias/org.racket-lang.prefs.rktd
+  - _disco duro_/Usuarios/_nombre de usuario_/Biblioteca/Preferencias/PLT-autosave-toc
+  - _disco duro_/Usuarios/_nombre de usuario_/Biblioteca/Preferencias/PLT-autosave-toc-save
+  - _disco duro_/Usuarios/_nombre de usuario_/Biblioteca/Preferencias/PLT-autosave-toc.rktd
+  - _disco duro_/Usuarios/_nombre de usuario_/Biblioteca/Preferencias/PLT-autosave-toc-save.rktd
+ 
+- Descarga el archivo _org.racket-lang.prefs.rktd_ de la rama 'main' de este repositorio
+   - Copia el archivo _org.racket-lang.prefs.rktd_ en la carpeta _disco duro_/Usuarios/_nombre de usuario_/Biblioteca/Preferencias
+
+-Abre Dr Racket, haz clic en _Run_ en la esquina superior derecha, ¡y ya está!
+    - Ten en cuenta que todos los archivos deben comenzar (automáticamente) con las siguientes dos líneas para usar _scheme traductor_
+         - #lang scheme
+        - (require scheme-traductor/scheme-traductor)
+
+---        
+
+# scheme translator 
+- Official project for _scheme-traductor_: write in scheme, but in Spanish! 
+- Designed for use with [Dr Racket](https://www.racket-lang.org/) graphical interface
 
 
 ## Install and Configure Dr Racket with _scheme traductor_ for Windows: 
 - Navigate to [Download Dr Racket](https://download.racket-lang.org) 
     - Download the version appropriate for your computer and operating system (Windows)
     - Click on the “racket-...exe” button
-    - In the opening/saving dialog that follows choose to save the file racket....exe
-    - Execute the racket....exe file that you saved 
+    - Execute the "racket....exe" file 
 
-- Download the scheme-traductor folder from the main branch in this repository
-    - Copy the scheme-traductor folder into the Racket/collects folder 
-    - For Windows, assuming that the C: drive is the main drive on your computer, this is usually located at: C:\Program Files\Racket
+- Download the _scheme-traductor_ folder from the main branch in this repository
+    - Copy the _scheme-traductor_ folder into the Racket/collects folder 
+    - Assuming that the C: drive is the main drive on your computer, this is usually located at: C:\Program Files\Racket
     
-- Delete the 'Racket' folder located at C:\Users\_user name_\AppData\Roaming\Racket
-    - Create a new folder named 'Racket' inside the C:\Users\_user name_\AppData\Roaming folder 
-    - Copy the racket-prefs.rktd from the main branch of this repository into this 'Racket' folder 
+- Delete the 'Racket' folder located at C:\Users\*user name*\AppData\Roaming\Racket
+    - Create a new folder named 'Racket' inside the C:\Users\*user name*\AppData\Roaming folder 
+    - Download the _racket-prefs.rktd_ file from the main branch of this repository
+    - Place the _racket-prefs.rktd_ file inside of the 'Racket' folder you created  
     
-- Open Dr Racket, hit 'Run' in the upper right hand corner, and you're all set! 
-    - Note that all files should (automatically) start with the following two lines in order to use scheme traductor
+- Open Dr Racket, hit _Run_ in the upper right hand corner, and you're all set! 
+    - Note that all files should (automatically) start with the following two lines in order to use _scheme traductor_
         - #lang scheme
         - (require scheme-traductor/scheme-traductor)
   
@@ -27,9 +87,9 @@
 - Navigate to [Download Dr Racket](https://download.racket-lang.org) 
     - Download the version appropriate for your computer and operating system (MacOS)
     - Click on the “racket-...dmg” button
-    - In the opening/saving dialog that follows choose to save the file racket....dmg
-    - Double-click on the racket....dmg disk-image file that you saved 
-    - From the disk folder that opens, drag the Racket vXXXX folder (where XXXX is the number of the current version of DrRacket) to the Applications folder
+    - In the opening/saving dialog that follows choose to save the file "racket....dmg"
+    - Double-click on the "racket....dmg" disk-image file that you saved 
+    - From the disk folder that opens, drag the Racket vXXXX folder (where XXXX is the number of the current version of DrRacket) to the _Applications_ folder
 
 - Download the scheme-traductor folder from the main branch in this repository
     - Copy the scheme-traductor folder into the Racket/collects folder 
@@ -39,17 +99,17 @@
     - chmod -R go+rx-w /Applications/Racket\ vXXXX/collects
 
  - If they exist, delete the files
-    - hard drive/Users/_user name_/Library/Preferences/org.plt-scheme.DrScheme.plist
-    - hard drive/Users/_user name_/Library/Preferences/org.plt-scheme.prefs.ss
-    - hard drive/Users/_user name_/Library/Preferences/org.racket-lang.DrRacket.plist
-    - hard drive/Users/_user name_/Library/Preferences/org.racket-lang.prefs.rktd
-    - hard drive/Users/_user name_/Library/Preferences/PLT-autosave-toc
-    - hard drive/Users/_user name_/Library/Preferences/PLT-autosave-toc-save
-    - hard drive/Users/_user name_/Library/Preferences/PLT-autosave-toc.rktd
-    - hard drive/Users/_user name_/Library/Preferences/PLT-autosave-toc-save.rktd
+    - _hard drive_/Users/_user name_/Library/Preferences/org.plt-scheme.DrScheme.plist
+    - _hard drive_/Users/_user name_/Library/Preferences/org.plt-scheme.prefs.ss
+    - _hard drive_/Users/_user name_/Library/Preferences/org.racket-lang.DrRacket.plist
+    - _hard drive_/Users/_user name_/Library/Preferences/org.racket-lang.prefs.rktd
+    - _hard drive_/Users/_user name_/Library/Preferences/PLT-autosave-toc
+    - _hard drive_/Users/_user name_/Library/Preferences/PLT-autosave-toc-save
+    - _hard drive_/Users/_user name_/Library/Preferences/PLT-autosave-toc.rktd
+    - _hard drive_/Users/_user name_/Library/Preferences/PLT-autosave-toc-save.rktd
     
  - Copy the file org.racket-lang.prefs.rktd from the main branch of this repository into the folder 
-    - hard drive/Users/user name/Library/Preferences
+    - _hard drive_/Users/user name/Library/Preferences
 
 - Open Dr Racket, hit 'Run' in the upper right hand corner, and you're all set! 
     - Note that all files should (automatically) start with the following two lines in order to use scheme traductor
