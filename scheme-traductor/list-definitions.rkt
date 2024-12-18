@@ -2,8 +2,7 @@
 
 (require "helper-definitions.rkt")
 (require "err-chks.rkt")
-;(require (for-syntax "macro-err-chks.rkt"))
-;(require "macro-err-chks.rkt")
+
 
 ;;;;
 ;;;; List Definitions
