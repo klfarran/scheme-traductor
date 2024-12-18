@@ -4,7 +4,7 @@
 
 
 ## Install and Configure Dr Racket with _scheme traductor_ for Windows: 
-- Navigate to [Download Dr Racket](download.racket-lang.org  "Download Dr Racket") 
+- Navigate to [Download Dr Racket](https://download.racket-lang.org) 
     - Download the version appropriate for your computer and operating system (Windows)
     - Click on the “racket-...exe” button
     - In the opening/saving dialog that follows choose to save the file racket....exe
@@ -24,7 +24,7 @@
         - (require scheme-traductor/scheme-traductor)
   
 ## Install and Configure Dr Racket with _scheme traductor_ for Mac: 
-- Navigate to [Download Dr Racket](download.racket-lang.org  "Download Dr Racket") 
+- Navigate to [Download Dr Racket](https://download.racket-lang.org) 
     - Download the version appropriate for your computer and operating system (MacOS)
     - Click on the “racket-...dmg” button
     - In the opening/saving dialog that follows choose to save the file racket....dmg
