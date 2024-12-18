@@ -39,14 +39,14 @@
     - chmod -R go+rx-w /Applications/Racket\ vXXXX/collects
 
  - If they exist, delete the files
-    - hard drive/Users/_user name_/Library/Preferences/org.plt￾scheme.DrScheme.plist
-    - hard drive/Users/_user name_/Library/Preferences/org.plt￾scheme.prefs.ss
-    - hard drive/Users/_user name_/Library/Preferences/org.racket￾lang.DrRacket.plist
-    - hard drive/Users/_user name_/Library/Preferences/org.racket￾lang.prefs.rktd
+    - hard drive/Users/_user name_/Library/Preferences/org.plt-scheme.DrScheme.plist
+    - hard drive/Users/_user name_/Library/Preferences/org.plt-scheme.prefs.ss
+    - hard drive/Users/_user name_/Library/Preferences/org.racket-lang.DrRacket.plist
+    - hard drive/Users/_user name_/Library/Preferences/org.racket-lang.prefs.rktd
     - hard drive/Users/_user name_/Library/Preferences/PLT-autosave-toc
-    - hard drive/Users/_user name_/Library/Preferences/PLT-autosave￾toc-save
-    - hard drive/Users/_user name_/Library/Preferences/PLT-autosave￾toc.rktd
-    - hard drive/Users/_user name_/Library/Preferences/PLT-autosave￾toc-save.rktd
+    - hard drive/Users/_user name_/Library/Preferences/PLT-autosave-toc-save
+    - hard drive/Users/_user name_/Library/Preferences/PLT-autosave-toc.rktd
+    - hard drive/Users/_user name_/Library/Preferences/PLT-autosave-toc-save.rktd
     
  - Copy the file org.racket-lang.prefs.rktd from the main branch of this repository into the folder 
     - hard drive/Users/user name/Library/Preferences
