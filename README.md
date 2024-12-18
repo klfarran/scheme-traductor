@@ -8,7 +8,7 @@
 
 ## Instrucciones de instalación para el sistema operativo Windows
 - Navega a [Descargar Dr Racket](https://download.racket-lang.org)
-  - En el menú desplegable 'Platform', selecciona la versión de Windows adecuada para su computadora
+  - En el menú desplegable 'Platform', selecciona la versión de Windows adecuada para tu computadora
   - Haz clic en el botón "racket-...exe"
   - Ejecuta el archivo "racket....exe"
 
@@ -28,7 +28,7 @@
 
 ## Instrucciones de instalación para el sistema operativo Mac
 - Navega a [Descargar Dr Racket](https://download.racket-lang.org)
-  - En el menú desplegable 'Platform', selecciona la versión de MacOS adecuada para su computadora
+  - En el menú desplegable 'Platform', selecciona la versión de MacOS adecuada para tu computadora
   - Haz clic en el botón “racket-...dmg”
   - En el cuadro de diálogo de abrir/guardar que aparece, elige guardar el archivo "racket-...dmg"
   - Haz doble clic en el archivo de imagen de disco racket....dmg que guardaste
