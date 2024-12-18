@@ -2,6 +2,7 @@
 
 (require "helper-definitions.rkt")
 (require "err-chks.rkt")
+(require racket/trace)
 
 ;;;;
 ;;;; Boolean/ Conditional Definitions
@@ -54,7 +55,7 @@
 
 ;;Conditional procedures
 
-(define si ;if
+(trace-define si ;if
   (lambda args 
     (if (arity-check (count-args args) 3 "si")
     (cond   

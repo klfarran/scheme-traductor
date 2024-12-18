@@ -1,6 +1,6 @@
 #lang scheme
 
-;; Require all groupings of definitions
+;; require all groupings of definitions
 
 (require scheme-traductor/keyword-definitions)
 (require scheme-traductor/arithmetic-definitions)

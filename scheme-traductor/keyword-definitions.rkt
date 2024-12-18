@@ -21,7 +21,7 @@
                    ; add arity-check as the first line in any procedure defined using definir 
                    (arity-check (count-args args) (count-args (syntax->datum #'params)) (symbol->string 'sym)) 
                     ;'execute' procedure with given args 'args' as a lambda expression 
-                   (apply (lambda params expr) args) ))) ]  
+                   (apply (lambda params expr) args) )))]  
       ;CASE 2- (define id expr)
       [(_ sym expr)
        (if (not (identifier? #'sym)) ; ensure sym is a valid identifier
@@ -63,8 +63,9 @@
           (lambda (binding)
               (unless (identifier? (car (syntax->list binding))) ; get just 'var' out of the pair and make sure its a valid identifier
                 (error (string-append "\n  sea: par de enlaces no válido\n el primer argumento debe ser un identificador\nen: " (format "~a" (syntax->datum binding)))))
-              (unless (not (identifier? (cadr (syntax->list binding)))) ; get just 'val' out of the pair and make sure its not a valid identifier
-                (error (string-append "\n  sea: par de enlaces no válido\n el segundo argumento debe ser un valor\nen: " (format "~a" (syntax->datum binding)))))  ) 
+              ;(unless (not (identifier? (cadr (syntax->list binding)))) ; get just 'val' out of the pair and make sure its not a valid identifier
+               ; (error (string-append "\n  sea: par de enlaces no válido\n el segundo argumento debe ser un valor\nen: " (format "~a" (syntax->datum binding)))))
+            ) 
           (syntax->list #'((var val) ...))) ; convert the list of bindings to syntax objects
          #'(let ((var val) ...) body ...)] ; expand to `let`
       ;CASE2 - (let proc-id ([id init-expr] ...) body ...+)
@@ -79,7 +80,9 @@
           (unless (not (identifier? (cadr (syntax->list binding)))) ; get just 'val' out of the pair and make sure its not a valid identifier
                 (error (string-append "\n  sea: par de enlaces no válido\n el segundo argumento debe ser un valor\nen: " (format "~a" (syntax->datum binding))))) )
         (syntax->list #'((var val) ...)))
-       #'(let proc-id ((var val) ...) body ...))]
+       ;#'(let proc-id ((var val) ...) body ...))]
+        #'(letrec ([proc-id (lambda (var ...) body ...)])
+             (proc-id val ...)))]
       [_
        (error "\n  sea: sintaxis no válida\n  se esperaba una lista de enlaces y una o más expresiones de cuerpo\n un enlace válido debe tener la forma: [identificador valor]")])))
 
@@ -128,8 +131,18 @@
 
 (provide cita)
 
+(define-syntax rastrear ;trace
+  (lambda (stx)
+    (syntax-case stx ()
+      [(_ id)
+       #'(begin
+       (trace id))]
+      [_
+       (error "\n rastrear: se esperaba un identificador cuyo valor es un procedimiento")] )))
 
-(define-syntax rastreo-definir ;trace-define
+(provide rastrear)
+
+(define-syntax rastrear-definir ;trace-define
   (lambda (stx)
     (syntax-case stx ()
       [(_ sym expr)
@@ -137,9 +150,9 @@
            (definir sym expr)  
            (trace sym))]
       [_
-      (error "\n rastreo-definir: se esperaba dos argumentos: un símbolo y una expresión")])))    
+      (error "\n rastrear-definir: se esperaba dos argumentos: un símbolo y una expresión")])))    
 
-(provide rastreo-definir)
+(provide rastrear-definir)
 
 (define-syntax condición
   (lambda (stx)
