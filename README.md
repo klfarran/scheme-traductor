@@ -1,7 +1,10 @@
 # scheme traductor
 ### Scroll down for English
-- Proyecto oficial para _scheme-traductor_: escribir programas en el lenguaje de programación _scheme_, ¡pero en español!
-- Diseñado para ser utilizado con la interfaz gráfica de [Dr Racket](https://www.racket-lang.org/) 
+- #### Proyecto oficial para _scheme-traductor_: escribir programas en el lenguaje de programación _scheme_, ¡pero en español!
+- #### Para ser utilizado con la interfaz gráfica de [Dr Racket](https://www.racket-lang.org/) 
+- #### Diseñado por Kelly Farran bajo la asesoría del Dr. Sean McCulloch del departamento de matemáticas e informática en la Universidad de Ohio Wesleyan, EE.UU 
+
+---
 
 ## Instrucciones de instalación para el sistema operativo Windows
 - Navega a [Descargar Dr Racket](https://download.racket-lang.org)
@@ -59,8 +62,9 @@
 ---        
 
 # scheme translator 
-- Official project for _scheme-traductor_: write in scheme, but in Spanish! 
-- Designed for use with [Dr Racket](https://www.racket-lang.org/) graphical interface
+- #### Official project for _scheme-traductor_: write in scheme, but in Spanish! 
+- #### For use with [Dr Racket](https://www.racket-lang.org/) graphical interface
+- #### Designed by Kelly Farran under the advisement of Dr. Sean McCulloch of the Department of Mathematics and Computer Science at Ohio Wesleyan University
 
 
 ## Install and Configure Dr Racket with _scheme traductor_ for Windows: 
