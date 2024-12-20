@@ -23,7 +23,7 @@
  
 -Abre Dr Racket, haz clic en _Run_ en la esquina superior derecha, ¡y ya está!
     - Ten en cuenta que todos los archivos deben comenzar (automáticamente) con las siguientes dos líneas para usar _scheme traductor_
-         - #lang scheme
+        - #lang scheme
         - (require scheme-traductor/scheme-traductor)
 
 ## Instrucciones de instalación para el sistema operativo Mac
@@ -54,7 +54,7 @@
 - Descarga el archivo _org.racket-lang.prefs.rktd_ de la rama 'main' de este repositorio
    - Copia el archivo _org.racket-lang.prefs.rktd_ en la carpeta _disco duro_/Usuarios/_nombre de usuario_/Biblioteca/Preferencias
 
--Abre Dr Racket, haz clic en _Run_ en la esquina superior derecha, ¡y ya está!
+- Abre Dr Racket, haz clic en _Run_ en la esquina superior derecha, ¡y ya está!
     - Ten en cuenta que todos los archivos deben comenzar (automáticamente) con las siguientes dos líneas para usar _scheme traductor_
          - #lang scheme
         - (require scheme-traductor/scheme-traductor)
