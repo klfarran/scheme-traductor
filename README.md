@@ -1,6 +1,6 @@
-# scheme traductor
+# esquemático!
 ### Scroll down for English
-- #### Proyecto oficial para _scheme-traductor_: escribir programas en el lenguaje de programación _scheme_, ¡pero en español!
+- #### Proyecto oficial para _esquemático_: escribir programas en el lenguaje de programación _Scheme_, ¡pero en español!
 - #### Para ser utilizado con la interfaz gráfica de [Dr Racket](https://www.racket-lang.org/) 
 - #### Diseñado por Kelly Farran bajo la asesoría del Dr. Sean McCulloch del departamento de matemáticas e informática en la Universidad de Ohio Wesleyan, EE.UU 
 
@@ -21,8 +21,8 @@
   - Descarga el archivo _racket-prefs.rktd_ de la rama 'main' de este repositorio
   - Pon el archivo _racket-prefs.rktd_ dentro de la carpeta 'Racket' que creaste
  
--Abre Dr Racket, haz clic en _Run_ en la esquina superior derecha, ¡y ya está!
-    - Ten en cuenta que todos los archivos deben comenzar (automáticamente) con las siguientes dos líneas para usar _scheme traductor_
+- Abre Dr Racket, haz clic en _Run_ en la esquina superior derecha, ¡y ya está!
+    - Ten en cuenta que todos los archivos deben comenzar (automáticamente) con las siguientes dos líneas para usar _esquemático_
         - #lang scheme
         - (require scheme-traductor/scheme-traductor)
 
@@ -55,14 +55,14 @@
    - Copia el archivo _org.racket-lang.prefs.rktd_ en la carpeta _disco duro_/Usuarios/_nombre de usuario_/Biblioteca/Preferencias
 
 - Abre Dr Racket, haz clic en _Run_ en la esquina superior derecha, ¡y ya está!
-    - Ten en cuenta que todos los archivos deben comenzar (automáticamente) con las siguientes dos líneas para usar _scheme traductor_
+    - Ten en cuenta que todos los archivos deben comenzar (automáticamente) con las siguientes dos líneas para usar _esquemático_
          - #lang scheme
         - (require scheme-traductor/scheme-traductor)
 
 ---        
 
-# scheme translator 
-- #### Official project for _scheme-traductor_: write in scheme, but in Spanish! 
+# esquemático! 
+- #### Official project for _esquemático_: write in Scheme, but in Spanish! 
 - #### For use with [Dr Racket](https://www.racket-lang.org/) graphical interface
 - #### Designed by Kelly Farran under the advisement of Dr. Sean McCulloch of the Department of Mathematics and Computer Science at Ohio Wesleyan University
 
@@ -87,7 +87,7 @@
         - #lang scheme
         - (require scheme-traductor/scheme-traductor)
   
-## Install and Configure Dr Racket with _scheme traductor_ for Mac: 
+## Install and Configure Dr Racket with _esquemático_ for Mac: 
 - Navigate to [Download Dr Racket](https://download.racket-lang.org) 
     - Download the version appropriate for your computer and operating system (MacOS)
     - Click on the “racket-...dmg” button
@@ -116,6 +116,6 @@
     - _hard drive_/Users/user name/Library/Preferences
 
 - Open Dr Racket, hit 'Run' in the upper right hand corner, and you're all set! 
-    - Note that all files should (automatically) start with the following two lines in order to use scheme traductor
+    - Note that all files should (automatically) start with the following two lines in order to use esquemático
         - #lang scheme
         - (require scheme-traductor/scheme-traductor)
