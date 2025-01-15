@@ -105,7 +105,7 @@
   (lambda args
     (if (arity-check (count-args args) 1 "¿falso?")
     (cond
-      ((false? (car args)) 'cierto)
+      ((or (false? (car args)) (eq? 'falso (car args))) 'cierto)
        (else 'falso) )
         (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
 
@@ -116,20 +116,12 @@
   (lambda args
     (if (arity-check (count-args args) 1 "¿cierto?")
     (cond
-      ((eq? 'cierto (car args)) 'cierto)
-       (else 'falso) )
+      ((eq? (¿falso? (car args) ) 'cierto) 'falso)
+       (else 'cierto) )
         (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
 
   (provide ¿cierto?)
 
-(define ¿nulo? ;null?
-  (lambda args 
-   (if (arity-check (count-args args) 1 "¿nulo?") 
-    (cond
-      ((null? (car args)) 'cierto) 
-       (else 'falso))
-         (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
 
-  (provide ¿nulo?)
 
 
