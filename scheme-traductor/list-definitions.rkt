@@ -25,6 +25,16 @@
 
   (provide lista)
 
+(define ¿nulo? ;null?
+  (lambda args 
+   (if (arity-check (count-args args) 1 "¿nulo?") 
+    (cond
+      ((null? (car args)) 'cierto) 
+       (else 'falso))
+         (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
+
+  (provide ¿nulo?)
+
 (define concatenar ;append
   (lambda args 
     (if (contract-viol-check args "lista lista... cualquiera" "concatenar")
