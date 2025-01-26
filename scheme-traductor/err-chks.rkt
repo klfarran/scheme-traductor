@@ -41,7 +41,7 @@
           (error
            (string-append "\n  "
             proc-id
-            ": violación de contrato\n esperado: " desired-args "\ndado: " (list-to-string my-args) "\nerror at: " (match-contract my-args proc-id)) ))))
+            ": violación de contrato\n esperado: " desired-args "\ndado: " (list-to-string my-args) "\nerror en: " (match-contract my-args proc-id)) ))))
 
 (provide contract-viol-check)
 
