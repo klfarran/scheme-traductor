@@ -22,7 +22,17 @@
 
 ;;Procedures for determining equality
 
-(define ¿ig? ;eq?
+(define-syntax ¿ig?
+  (lambda (stx)
+    (syntax-case stx ()
+      [(¿ig? . args)
+       #'(inner-¿ig? . args)] 
+      [¿ig?
+       #'(displayln "#<procedimiento:¿ig?>")]
+      [else
+       (error "\n¿ig?: sintaxis no válida")])))
+
+(define inner-¿ig? ;eq?
   (lambda args 
    (if (arity-check (count-args args) 2 "¿ig?")
       (cond
@@ -32,7 +42,17 @@
 
   (provide ¿ig?)
 
-(define ¿igv? ;eqv?
+(define-syntax ¿igv?
+  (lambda (stx)
+    (syntax-case stx ()
+      [(¿igv? . args)
+       #'(inner-¿igv? . args)] 
+      [¿igv?
+       #'(displayln "#<procedimiento:¿igv?>")]
+      [else
+       (error "\n¿igv?: sintaxis no válida")])))
+
+(define inner-¿igv? ;eqv?
   (lambda args 
    (if (arity-check (count-args args) 2 "¿igv?")
       (cond
@@ -42,7 +62,17 @@
 
   (provide ¿igv?)
 
-(define ¿igual? ;equal?
+(define-syntax ¿igual?
+  (lambda (stx)
+    (syntax-case stx ()
+      [(¿igual? . args)
+       #'(inner-¿igual? . args)] 
+      [¿igual?
+       #'(displayln "#<procedimiento:¿igual?>")]
+      [else
+       (error "\n¿igual?: sintaxis no válida")])))
+
+(define inner-¿igual? ;equal?
   (lambda args 
    (if (arity-check (count-args args) 2 "¿igual?")
       (cond
@@ -55,7 +85,17 @@
 
 ;;Conditional procedures
 
-(define si ;if
+(define-syntax si
+  (lambda (stx)
+    (syntax-case stx ()
+      [(si . args)
+       #'(inner-si . args)] 
+      [si
+       #'(displayln "#<procedimiento:si>")]
+      [else
+       (error "\nsi: sintaxis no válida")])))
+
+(define inner-si ;if
   (lambda args 
     (if (arity-check (count-args args) 3 "si")
     (cond   
@@ -65,7 +105,17 @@
 
   (provide si) 
 
-(define y ;and 
+(define-syntax y
+  (lambda (stx)
+    (syntax-case stx ()
+      [(y . args)
+       #'(inner-y . args)] 
+      [y
+       #'(displayln "#<procedimiento:y>")]
+      [else
+       (error "\ny: sintaxis no válida")])))
+
+(define inner-y ;and 
   (lambda args 
     (if (arity-check (count-args args) -1 "y")
      (cond 
@@ -78,7 +128,17 @@
 
    (provide y)
 
-(define o ;and 
+(define-syntax o
+  (lambda (stx)
+    (syntax-case stx ()
+      [(o . args)
+       #'(inner-o . args)] 
+      [o
+       #'(displayln "#<procedimiento:o>")]
+      [else
+       (error "\no: sintaxis no válida")])))
+
+(define inner-o ;and 
   (lambda args
     (if (arity-check (count-args args) -1 "o")
      (cond 
@@ -93,7 +153,17 @@
 
    (provide o)
 
-(define no ;not
+(define-syntax no
+  (lambda (stx)
+    (syntax-case stx ()
+      [(no . args)
+       #'(inner-no . args)] 
+      [no
+       #'(displayln "#<procedimiento:no>")]
+      [else
+       (error "\nno: sintaxis no válida")])))
+
+(define inner-no ;not
   (lambda args 
    (if (arity-check (count-args args) 1 "no") 
        (if (¿falso? (car args)) 'cierto 'falso)
@@ -101,7 +171,17 @@
 
    (provide no)
 
-(define ¿falso? ;false?
+(define-syntax ¿falso?
+  (lambda (stx)
+    (syntax-case stx ()
+      [(¿falso? . args)
+       #'(inner-¿falso? . args)] 
+      [¿falso?
+       #'(displayln "#<procedimiento:¿falso?>")]
+      [else
+       (error "\n¿falso?: sintaxis no válida")])))
+
+(define inner-¿falso? ;false?
   (lambda args
     (if (arity-check (count-args args) 1 "¿falso?")
     (cond
@@ -111,8 +191,17 @@
 
   (provide ¿falso?)
 
+(define-syntax ¿cierto?
+  (lambda (stx)
+    (syntax-case stx ()
+      [(¿cierto? . args)
+       #'(inner-¿cierto? . args)] 
+      [¿cierto?
+       #'(displayln "#<procedimiento:¿cierto?>")]
+      [else
+       (error "\n¿cierto?: sintaxis no válida")])))
 
-(define ¿cierto? ; functions like true? if scheme included such a procedure
+(define inner-¿cierto? ; functions like true? if scheme included such a procedure
   (lambda args
     (if (arity-check (count-args args) 1 "¿cierto?")
     (cond

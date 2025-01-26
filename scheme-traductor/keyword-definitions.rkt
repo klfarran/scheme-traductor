@@ -171,3 +171,24 @@
     [(_ args) (require args)] ))
 
 (provide requerir)
+
+;could potentially add into 'definir' a place where we write a macro for the name/ proc id that's being defined to handle
+;sytnax errors with those user-defined functions? god that's a lot...
+;(define-syntax pri
+ ; (lambda (stx)
+  ;  (syntax-case stx ()
+   ;   [(pri) 
+    ;   (error 'pri "sintaxis no válida: se esperaba una lista")]  ; Return an error for (pri)
+     ; [(pri . args)
+      ; (begin
+       ;  (displayln (syntax->datum #'args))
+;       (if (mac-arity-check (mac-count-args (syntax->datum #'args)) 1 "pri") ;cdr 'gets rid of' the extra quote that's placed in front of the args 
+ ;          #'(caadar (syntax->datum #'args))  ; Expand to (car args) if arity is correct
+  ;         (error 'pri "sintaxis no válida: número incorrecto de argumentos")))]
+   ;   [pri 
+    ;   #'(begin 
+     ;       (display "#<procedimiento:pri>")
+      ;      (newline))]
+      ;[else
+       ;(error 'pri "sintaxis no válida") ])))
+
