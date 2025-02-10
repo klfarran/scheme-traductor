@@ -4,6 +4,7 @@
 ;;;; Helper Definitions
 ;;;;
 
+
 (define count-args ;function to count number of arguments in a list 
   (lambda (args) ; a list, which consists of a variable number of parameters
    (if (null? args)
@@ -274,28 +275,34 @@
         ((and (equal? (substring (get-contract proc-id) 0 1) "_") (null? (car my-args))) ", se espera un átomo o una lista")
         ((and (equal? (get-contract proc-id) "string") (not (string? (car my-args))) ) (string-append (format "~a" (car my-args)) ", se espera una cadena"))
         ((and (equal? (get-contract proc-id) "string, string, ...") (not (all-strings? my-args)) ) (string-append (format "~a" (non-string-item my-args)) ", se espera una cadena"))
-        ((and (equal? (get-contract proc-id) "string, number, number") (not (string? (car my-args))) ) (string-append (format "~a" (car my-args)) ", se espera una cadena"))
-        ((and (equal? (get-contract proc-id) "string, number, number") (not (number? (cadr my-args))) ) (string-append (format "~a" (cadr my-args)) ", se espera un número"))
-        ((and (equal? (get-contract proc-id) "string, number, number") (not (number? (caddr my-args))) ) (string-append (format "~a" (caddr my-args)) ", se espera un número"))     
+        ((and (equal? (get-contract proc-id) "string, number, [number]") (not (string? (car my-args))) ) (string-append (format "~a" (car my-args)) ", se espera una cadena"))
+        ((and (equal? (get-contract proc-id) "string, number, [number]") (not (number? (cadr my-args))) ) (string-append (format "~a" (cadr my-args)) ", se espera un número"))
         ((and (equal? (get-contract proc-id) "(1+)") (null? (car my-args))) "(), se espera una lista no vacía")
-        ((and (equal? (get-contract proc-id) "(1+)") (not (list? (car my-args)))) (string-append (format "~a" (car my-args)) ", se espera una lista"))
-        ((and (equal? (get-contract proc-id) "(2+)") (not (list? (car my-args)))) (string-append (format "~a" (car my-args)) ", se espera una lista"))
+        ((and (equal? (get-contract proc-id) "(1+)") (not (pair? (car my-args)))) (string-append (format "~a" (car my-args)) ", se espera una lista"))
+        ((and (equal? (get-contract proc-id) "(2+)") (not (pair? (car my-args)))) (string-append (format "~a" (car my-args)) ", se espera una lista"))
         ((and (equal? (get-contract proc-id) "(2+)") (> 2 (length (car my-args)))) (string-append (format "~a" (car my-args)) ", se espera una lista con al menos dos elementos"))
-        ((and (equal? (get-contract proc-id) "(3+)") (not (list? (car my-args)))) (string-append (format "~a" (car my-args)) ", se espera una lista"))
+        ((and (equal? (get-contract proc-id) "(3+)") (not (pair? (car my-args)))) (string-append (format "~a" (car my-args)) ", se espera una lista"))
         ((and (equal? (get-contract proc-id) "(3+)") (> 3 (length (car my-args)))) (string-append (format "~a" (car my-args)) ", se espera una lista con al menos tres elementos"))
-        ((and (equal? (get-contract proc-id) "(4+)") (not (list? (car my-args)))) (string-append (format "~a" (car my-args)) ", se espera una lista"))
+        ((and (equal? (get-contract proc-id) "(4+)") (not (pair? (car my-args)))) (string-append (format "~a" (car my-args)) ", se espera una lista"))
         ((and (equal? (get-contract proc-id) "(4+)") (> 4 (length (car my-args)))) (string-append (format "~a" (car my-args)) ", se espera una lista con al menos cuatro elementos"))
-        ((and (equal? (get-contract proc-id) "(2+ of any)")  (not (list? (car my-args)))) (string-append (format "~a" (car my-args)) ", se espera una lista"))
+        ((and (equal? (get-contract proc-id) "(2+ of any)")  (not (pair? (car my-args)))) (string-append (format "~a" (car my-args)) ", se espera una lista"))
         ((and (equal? (get-contract proc-id) "(2+ of any)")  (> 2 (length (car my-args)))) (string-append (format "~a" (car my-args)) ", se espera una lista con al menos dos elementos"))
-        ((and (equal? (get-contract proc-id) "((), 0+ of any)")  (not (list? (car my-args)))) (string-append (format "~a" (car my-args)) ", se espera una lista"))
+        ((and (equal? (get-contract proc-id) "((), 0+ of any)")  (not (pair? (car my-args)))) (string-append (format "~a" (car my-args)) ", se espera una lista"))
         ((and (equal? (get-contract proc-id) "number")(not (number? (car my-args)))) (string-append (format "~a" (car my-args)) ", se espera un número"))
         ((and (equal? (get-contract proc-id) "1+ numbers") (not (all-numbers? my-args))) (string-append (format "~a" (non-numeric-item my-args)) ", se espera un número" ))
         ((and (equal? (get-contract proc-id) "((), (), ...any)") (not (all-lists? (all-but-last my-args)))) (string-append (format "~a" (non-list-item (all-but-last my-args))) ", se espera una lista"))    
-        ((and (equal? (get-contract proc-id) "()") (not (list? (car my-args))))  (string-append (format "~a" (car my-args)) ", se espera una lista")) 
-        ((and (equal? (get-contract proc-id) "(())") (not (list? (caar my-args)))) (string-append (format "~a" (caar my-args)) ", se espera una lista"))
-        ((and (equal? (get-contract proc-id) "((()))") (not (list? (caaar my-args)))) (string-append (format "~a" (caaar my-args)) ", se espera una lista"))
-        ((and (equal? (get-contract proc-id) "(((())))") (not (list? (caaaar my-args)))) (string-append (format "~a" (caaaar my-args)) ", se espera una lista"))
-              (else #t) ))) ;passes all checks
+        ((and (equal? (get-contract proc-id) "list") (not (list? (car my-args))))  (string-append (format "~a" (car my-args)) ", se espera una lista")) 
+        ((and (equal? (get-contract proc-id) "pair") (not (pair? (car my-args))))  (string-append (format "~a" (car my-args)) ", se espera un par")) 
+        ((and (equal? (get-contract proc-id) "(())") (not (pair? (caar my-args)))) (string-append (format "~a" (caar my-args)) ", se espera una lista"))
+        ((and (equal? (get-contract proc-id) "((()))") (not (pair? (caaar my-args)))) (string-append (format "~a" (caaar my-args)) ", se espera una lista"))
+        ((and (equal? (get-contract proc-id) "(((())))") (not (pair? (caaaar my-args)))) (string-append (format "~a" (caaaar my-args)) ", se espera una lista"))
+        ((equal? (get-contract proc-id) "string, number, [number]")
+            (if (= 3 (length my-args))
+                (if (not (number? (caddr my-args)))
+                   (string-append (format "~a" (caddr my-args)) ", se espera un número")
+                    #t)
+                 #t))
+            (else #t)))) ;passes all checks
 
 (provide match-contract)
 
@@ -305,7 +312,7 @@
   (lambda (proc-id)
     (cond
       ((equal? proc-id "pri") "(1+)")
-      ((equal? proc-id "longitud") "()")
+      ((equal? proc-id "longitud") "list")
       ((equal? proc-id "prri") "(())")
       ((equal? proc-id "prrri") "((()))")
       ((equal? proc-id "prrrri") "(((())))")
@@ -316,7 +323,7 @@
       ((equal? proc-id "pres") "(2+ of any)")
       ((equal? proc-id "resp") "((), 0+ of any)")
       ((equal? proc-id "longitud-de-cadena") "string")
-      ((equal? proc-id "subcadena") "string, number, number")
+      ((equal? proc-id "subcadena") "string, number, [number]")
       ((equal? proc-id "concatenar") "((), (), ...any)")
       ((equal? proc-id "concatenar-cadena") "string, string, ...")
       ((or (equal? proc-id "más")(equal? proc-id "menos")(equal? proc-id "div")(equal? proc-id "mult")(equal? proc-id "menos-de")

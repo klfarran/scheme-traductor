@@ -20,7 +20,7 @@
 
 (define inner-más ; +
   (lambda args
-    (if (and (arity-check (count-args args) -1 "más") (contract-viol-check args "número número ..." "más"))
+    (if (contract-viol-check args "número número ..." "más")
     (cond
       ((= 0 (count-args args)) 0)
       ((and (= 1 (count-args args)) (not (list? (car args))) (car args))) ;if given 3, we return 3, but if given (3), its an error
@@ -61,8 +61,9 @@
 
 (define inner-mult ; *
   (lambda args
-    (if (and (arity-check (count-args args) -1 "mult") (contract-viol-check args "número número ..." "mult"))
+    (if (contract-viol-check args "número número ..." "mult")
     (cond
+      ((= 0 (count-args args)) 1)
       ((= 1 (count-args args)) (car args))
       (else (mult-helper args) ) )
        (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación") )))

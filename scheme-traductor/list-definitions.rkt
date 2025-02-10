@@ -41,7 +41,7 @@
      (cond
        ((= 0 (count-args args)) '())
        ((null? (cdr args)) (list (car args)))
-       ((cons (car args) (lista (cadr args) )) ) )))
+       (else (cons (car args) (apply inner-lista (cdr args) )) ) )))
 
   (provide lista)
 
