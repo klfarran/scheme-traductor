@@ -4,7 +4,7 @@
 - #### Para ser utilizado con la interfaz gráfica de [Dr Racket](https://www.racket-lang.org/) 
 - #### Diseñado por Kelly Farran bajo la asesoría del Dr. Sean McCulloch del departamento de matemáticas e informática en la Universidad de Ohio Wesleyan, EE.UU 
 
-- #### [Ver la documentación completa](https://esquematico.azurewebsites.net)
+- #### [Ver la documentación completa](https://esquematico.azurewebsites.net/Inicio)
 
 ---
 
@@ -68,7 +68,7 @@
 - #### For use with [Dr Racket](https://www.racket-lang.org/) graphical interface
 - #### Designed by Kelly Farran under the advisement of Dr. Sean McCulloch of the Department of Mathematics and Computer Science at Ohio Wesleyan University
 
-- #### [See the complete documentation](https://esquematico.azurewebsites.net)
+- #### [See the complete documentation](https://esquematico.azurewebsites.net/Inicio)
 
 ## Install and Configure Dr Racket with _esquemático_ for Windows: 
 - Navigate to [Download Dr Racket](https://download.racket-lang.org) 
