@@ -70,7 +70,7 @@
 
 - #### [See the complete documentation](https://esquematico.azurewebsites.net)
 
-## Install and Configure Dr Racket with _scheme traductor_ for Windows: 
+## Install and Configure Dr Racket with _esquemático_ for Windows: 
 - Navigate to [Download Dr Racket](https://download.racket-lang.org) 
     - Download the version appropriate for your computer and operating system (Windows)
     - Click on the “racket-...exe” button
