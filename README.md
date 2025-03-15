@@ -14,8 +14,8 @@
   - Haz clic en el botón "racket-...exe"
   - Ejecuta el archivo "racket....exe"
 
-- Descarga la carpeta _scheme-traductor_ de la rama 'main' de este repositorio
-  - Copia la carpeta _scheme-traductor_ en la carpeta Racket/collects
+- Descarga la carpeta _esquematico_ de la rama 'main' de este repositorio
+  - Copia la carpeta _esquematico_ en la carpeta Racket/collects
   - Suponiendo que la unidad C: sea la unidad principal de tu computadora, generalmente se encuentra _Racket/colects_ en C:\Archivos de programa\Racket
 
 - Elimina la carpeta 'Racket' ubicada en C:\Usuarios\*nombre de usuario*\AppData\Roaming\Racket
@@ -26,7 +26,7 @@
 - Abre Dr Racket, haz clic en _Run_ en la esquina superior derecha, ¡y ya está!
     - Ten en cuenta que todos los archivos deben comenzar (automáticamente) con las siguientes dos líneas para usar _esquemático_
         - #lang scheme
-        - (require scheme-traductor/scheme-traductor)
+        - (require esquematico/base)
 
 ## Instrucciones de instalación para el sistema operativo Mac
 - Navega a [Descargar Dr Racket](https://download.racket-lang.org)
@@ -36,8 +36,8 @@
   - Haz doble clic en el archivo de imagen de disco racket....dmg que guardaste
   - Desde la carpeta del disco que se abre, arrastra la carpeta Racket vXXXX (donde XXXX es el número de la versión actual de DrRacket) a la carpeta _Aplicaciones_
  
-- Descarga la carpeta _scheme-traductor_ de la rama 'main' de este repositorio
-  - Copia la carpeta _scheme-traductor_ en la carpeta Racket/collects
+- Descarga la carpeta _esquematico_ de la rama 'main' de este repositorio
+  - Copia la carpeta _esquematico_ en la carpeta Racket/collects
   - La carpeta _collects_ deber estar ubicada en _disco duro_/Aplicaciones/Racket vXXXX, donde XXXX es el número de la versión actual de Dr Racket
 
 - Abre la aplicación _Terminal_ y asegúrate de que toda la jerarquía /Applications/Racket vXXXX/collects sea legible y ejecutable por todos, pero no escribible por todos, ejecutando el comando:
@@ -59,7 +59,7 @@
 - Abre Dr Racket, haz clic en _Run_ en la esquina superior derecha, ¡y ya está!
     - Ten en cuenta que todos los archivos deben comenzar (automáticamente) con las siguientes dos líneas para usar _esquemático_
          - #lang scheme
-        - (require scheme-traductor/scheme-traductor)
+        - (require esquematico/base)
 
 ---        
 
@@ -76,8 +76,8 @@
     - Click on the “racket-...exe” button
     - Execute the "racket....exe" file 
 
-- Download the _scheme-traductor_ folder from the main branch in this repository
-    - Copy the _scheme-traductor_ folder into the Racket/collects folder 
+- Download the _esquematico_ folder from the main branch in this repository
+    - Copy the _esquematico_ folder into the Racket/collects folder 
     - Assuming that the C: drive is the main drive on your computer, this is usually located at: C:\Program Files\Racket
     
 - Delete the 'Racket' folder located at C:\Users\*user name*\AppData\Roaming\Racket
@@ -88,7 +88,7 @@
 - Open Dr Racket, hit _Run_ in the upper right hand corner, and you're all set! 
     - Note that all files should (automatically) start with the following two lines in order to use _scheme traductor_
         - #lang scheme
-        - (require scheme-traductor/scheme-traductor)
+        - (require esquematico/base)
   
 ## Install and Configure Dr Racket with _esquemático_ for Mac: 
 - Navigate to [Download Dr Racket](https://download.racket-lang.org) 
@@ -98,8 +98,8 @@
     - Double-click on the "racket....dmg" disk-image file that you saved 
     - From the disk folder that opens, drag the Racket vXXXX folder (where XXXX is the number of the current version of DrRacket) to the _Applications_ folder
 
-- Download the scheme-traductor folder from the main branch in this repository
-    - Copy the scheme-traductor folder into the Racket/collects folder 
+- Download the _esquematico_ folder from the main branch in this repository
+    - Copy the _esquematico_ folder into the Racket/collects folder 
     - The 'collects' folder should be located at _hard drive_/Applications/Racket vXXXX, where XXXX is the number of the current version of Dr Racket
 
 - Open the Terminal application and make sure that the entire /Applications/Racket vXXXX/collects hierarchy is world-readable and world-executable, but not world-writeable by executing the command
@@ -121,4 +121,4 @@
 - Open Dr Racket, hit 'Run' in the upper right hand corner, and you're all set! 
     - Note that all files should (automatically) start with the following two lines in order to use esquemático
         - #lang scheme
-        - (require scheme-traductor/scheme-traductor)
+        - (require esquematico/base)
