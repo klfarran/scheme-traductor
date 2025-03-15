@@ -2,7 +2,6 @@
 
 (require "helper-definitions.rkt")
 (require "err-chks.rkt")
-;(require "conditional-definitions.rkt")
 
 ;;;;
 ;;;; Arithmetic Definitions

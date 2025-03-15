@@ -1,6 +1,6 @@
 (
  (|plt:DrRacket 7.0-splash-max-width| 985)
- (plt:framework-pref:drracket:module-language:auto-text "#lang scheme\n\n(require scheme-traductor/scheme-traductor)\n\n")
+ (plt:framework-pref:drracket:module-language:auto-text "#lang scheme\n\n(require esquematico/base)\n\n")
  (plt:framework-pref:color-scheme-entry:framework:syntax-color:scheme:error #hash((classic . (base base (0 0 0) (1 1 1) #f base (255 0 0) (0 0 0) 0 1 italic base #t #f base bold))))
  (plt:framework-pref:color-scheme-entry:framework:syntax-color:scheme:parenthesis #hash((classic . (base base (0 0 0) (1 1 1) #f base (0 0 0) (0.0 0.0 0.0) 0 1 italic base #t #f base bold))))
  (plt:framework-pref:color-scheme-entry:framework:syntax-color:scheme:keyword #hash((classic . (base base (0 0 0) (1 1 1) #f base (0 0 0) (0.0 0.0 0.0) 0 1 italic base #t #f base bold))))
@@ -16,7 +16,7 @@
  (plt:framework-pref:drracket:show-line-numbers? #t)
  (plt:framework-pref:color-scheme-entry:framework:syntax-color:scheme:comment #hash((classic . (base base (0 0 0) (1 1 1) #f base (132 60 36) (0.0 0.0 0.0) 0 1 italic base #t #f base base))))
  (plt:framework-pref:drracket:recent-language-names (("Determine language from source" #6(#t trad-write mixed-fraction-e #f #t debug) (default) #0() "#lang scheme\n" #t #t ((test) (main)) #t)))
- (plt:framework-pref:drracket:language-settings ((-32768) (#6(#t trad-write mixed-fraction-e #f #t debug) (default) #0() "#lang scheme\n\n(require scheme-traductor/scheme-traductor)\n\n" #t #t ((test) (main)) #t)))
+ (plt:framework-pref:drracket:language-settings ((-32768) (#6(#t trad-write mixed-fraction-e #f #t debug) (default) #0() "#lang scheme\n\n(require esquematico/base)\n\n" #t #t ((test) (main)) #t)))
  (plt:framework-pref:drracket:console-previous-exprs ())
  (plt:framework-pref:framework:verify-exit #t)
 )
