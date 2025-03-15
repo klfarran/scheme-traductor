@@ -2,6 +2,7 @@
 
 (require "helper-definitions.rkt")
 (require "err-chks.rkt")
+(require racket/trace)
 
 
 ;;;;
@@ -166,7 +167,7 @@
 (define inner-no ;not
   (lambda args 
    (if (arity-check (count-args args) 1 "no") 
-       (if (¿falso? (car args)) 'cierto 'falso)
+       (if (eq? (car args) 'falso) 'cierto 'falso)
         (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación") )))
 
    (provide no)

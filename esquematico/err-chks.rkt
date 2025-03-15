@@ -11,6 +11,10 @@
   ;proc-id is the identifier bound to the procedure that we are checking the arity of 
   (define arity-check
    (lambda (my-args desired-args proc-id)
+     (if (eq? desired-args "2 or 3")
+         (if (or (= my-args 2) (= my-args 3))
+             #t
+             (error "error"))
       (if (= -1 desired-args)
         (if (< 0 my-args)
            #t
@@ -27,7 +31,7 @@
             ": desajuste de aridad;\n el número esperado de argumentos no coincide con el número dado\n esperado: " 
             (number->string desired-args) 
             "\n dado: " 
-            (number->string my-args)))))))
+            (number->string my-args)))))  )))
 
 (provide arity-check)
 
