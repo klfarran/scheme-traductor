@@ -15,11 +15,11 @@
   - Ejecuta el archivo "racket....exe"
 
 - Descarga la carpeta _esquematico_ de la rama 'main' de este repositorio
-  - Copia la carpeta _esquematico_ en la carpeta Racket/collects
-  - Suponiendo que la unidad C: sea la unidad principal de tu computadora, generalmente se encuentra _Racket/colects_ en C:\Archivos de programa\Racket
+  - Copia la carpeta _esquematico_ en la carpeta _Racket/collects_
+  - Suponiendo que la unidad C: sea la unidad principal de tu computadora, generalmente se encuentra en _C:\Archivos de programa\Racket_
 
-- Elimina la carpeta 'Racket' ubicada en C:\Usuarios\*nombre de usuario*\AppData\Roaming\Racket
-  - Crea una carpeta nueva llamada 'Racket' dentro de la carpeta C:\Usuarios\*nombre de usuario*\AppData\Roaming
+- Elimina la carpeta 'Racket' ubicada en _C:\Usuarios\*nombre de usuario*\AppData\Roaming\Racket_
+  - Crea una carpeta nueva llamada 'Racket' dentro de la carpeta _C:\Usuarios\*nombre de usuario*\AppData\Roaming_
   - Descarga el archivo _racket-prefs.rktd_ de la rama 'main' de este repositorio
   - Pon el archivo _racket-prefs.rktd_ dentro de la carpeta 'Racket' que creaste
  
@@ -77,11 +77,11 @@
     - Execute the "racket....exe" file 
 
 - Download the _esquematico_ folder from the main branch in this repository
-    - Copy the _esquematico_ folder into the Racket/collects folder 
-    - Assuming that the C: drive is the main drive on your computer, this is usually located at: C:\Program Files\Racket
+    - Copy the _esquematico_ folder into the _Racket/collects_ folder 
+    - Assuming that the C: drive is the main drive on your computer, this is usually located at: _C:\Program Files\Racket_
     
-- Delete the 'Racket' folder located at C:\Users\*user name*\AppData\Roaming\Racket
-    - Create a new folder named 'Racket' inside the C:\Users\*user name*\AppData\Roaming folder 
+- Delete the 'Racket' folder located at _C:\Users\*user name*\AppData\Roaming\Racket_
+    - Create a new folder named 'Racket' inside the _C:\Users\*user name*\AppData\Roaming folder_ 
     - Download the _racket-prefs.rktd_ file from the main branch of this repository
     - Place the _racket-prefs.rktd_ file inside of the 'Racket' folder you created  
     
