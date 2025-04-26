@@ -14,7 +14,11 @@
      (if (eq? desired-args "2 or 3")
          (if (or (= my-args 2) (= my-args 3))
              #t
-             (error "error"))
+             (error
+              (string-append "\n  "
+             proc-id 
+             ": desajuste de aridad;\n el número esperado de argumentos no coincide con el número dado\n esperado: 2 o 3\n dado: " 
+             (number->string my-args))))
       (if (= -1 desired-args)
         (if (< 0 my-args)
            #t

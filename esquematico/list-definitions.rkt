@@ -77,7 +77,7 @@
 
 (define inner-juntar ;append
   (lambda args 
-    (if (contract-viol-check args "lista lista... cualquiera" "concatenar")
+    (if (contract-viol-check args "lista lista... cualquiera" "juntar")
     (cond
       ((null? args) '())
       ((and (atom? (car args)) (= 1(count-args args))) (car args))
@@ -98,7 +98,7 @@
 
 (define inner-longitud ;length
   (lambda args
-    (if (and (arity-check (count-args args) 1 "longitud") (contract-viol-check args "(cualquiera)" "longitud"))
+    (if (and (arity-check (count-args args) 1 "longitud") (contract-viol-check args "(cualquier tipo)" "longitud"))
      (length (car args))
      (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación") )))
    

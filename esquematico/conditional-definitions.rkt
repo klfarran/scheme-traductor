@@ -20,6 +20,11 @@
 
    (provide cierto)
 
+(define verdadero ;true
+  #t)
+
+   (provide verdadero)
+
 
 ;;Procedures for determining equality
 
@@ -100,9 +105,9 @@
   (lambda args 
     (if (arity-check (count-args args) 3 "si")
     (cond   
-     ((eq? (car args) 'cierto) (cadr args)) ;if condition true, do the first operation (cadr) (else do the second operation, the caddr)
+     ((and (not (eq? (car args) 'falso)) (not (false? (car args)))) (cadr args)) ;if condition true, do the first operation (cadr) (else do the second operation, the caddr)
      (else (caddr args)) )
-    (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación"))))
+      (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación"))))
 
   (provide si) 
 
@@ -139,16 +144,26 @@
       [else
        (error "\no: sintaxis no válida")])))
 
-(define inner-o ;and 
+;(define inner-o ;and 
+ ; (lambda args
+  ;  (if (arity-check (count-args args) -1 "o")
+   ;  (cond 
+    ;  ((null? (car args)) 'falso) ; at least 1 #t element not found 
+     ; ((eq? (car args) #t) 'cierto) ; if any element is `cierto`, which evaluates to `#t`, return `cierto.
+      ;((eq? (car args) 'cierto) 'cierto)
+  ;    ((and (eq? (count-args args) 1) (false? (car args))) 'falso)
+   ;   ((and (eq? (count-args args) 1) (eq? (car args) 'falso)) 'falso)
+    ;  ((number? (car args)) (car args)) ;only one thing left in the list and its non #t #f, like a number, for example
+     ; (else (o-helper (cdr args))) )
+      ; (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación"))))
+
+(define inner-o ;or 
   (lambda args
     (if (arity-check (count-args args) -1 "o")
-     (cond 
+     (cond
       ((null? (car args)) 'falso) ; at least 1 #t element not found 
-      ((eq? (car args) #t) 'cierto) ; if any element is `cierto`, which evaluates to `#t`, return `cierto.
-      ((eq? (car args) 'cierto) 'cierto)
-      ((and (eq? (count-args args) 1) (false? (car args))) 'falso)
-      ((and (eq? (count-args args) 1) (eq? (car args) 'falso)) 'falso)
-      ((number? (car args)) (car args)) ;only one thing left in the list and its non #t #f, like a number, for example
+      ((and (not (false? (car args))) (or (eq? (car args) #t) (eq? (car args) 'cierto))) 'cierto)
+      ((and (not (false? (car args)))  (not (eq? (car args) 'falso)))(car args))
       (else (o-helper (cdr args))) )
        (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación"))))
 

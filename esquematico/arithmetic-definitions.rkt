@@ -2,6 +2,7 @@
 
 (require "helper-definitions.rkt")
 (require "err-chks.rkt")
+;(require "conditional-definitions.rkt")
 
 ;;;;
 ;;;; Arithmetic Definitions
@@ -13,7 +14,7 @@
       [(más . args)
        #'(inner-más . args)] 
       [más
-       #'(displayln "#<procedimiento:más>")]
+       #'(displayln "#<procedimiento:más>\n   se requiere número, número, ... número")]
       [else
        (error "\nmás: sintaxis no válida")])))
 
@@ -22,8 +23,7 @@
     (if (contract-viol-check args "número número ..." "más")
     (cond
       ((= 0 (count-args args)) 0)
-      ((and (= 1 (count-args args)) (not (list? (car args))) (car args))) ;if given 3, we return 3, but if given (3), its an error
-      (else (más-helper args) ) )
+       (else (apply + args) ) )
        (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
 
   (provide más)
@@ -43,7 +43,7 @@
     (if (and (arity-check (count-args args) -1 "menos") (contract-viol-check args "número número ..." "menos"))
     (cond
       ((= 1 (count-args args)) (- 0 (car args))) 
-      (else (menos-helper args) ) )
+      (else (apply - args) ) )
        (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
 
   (provide menos)
@@ -64,7 +64,7 @@
     (cond
       ((= 0 (count-args args)) 1)
       ((= 1 (count-args args)) (car args))
-      (else (mult-helper args) ) )
+      (else (apply * args) ) )
        (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación") )))
 
   (provide mult)
@@ -84,7 +84,7 @@
     (if (and (arity-check (count-args args) -1 "div") (contract-viol-check args "número número ..." "div") (div-by-zero-check args "div"))
     (cond
       ((= 1 (count-args args)) (/ 1 (car args))) 
-      (else (div-helper args)) )
+      (else (apply / args)) )
        (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
 
   (provide div)

@@ -3,7 +3,7 @@
 ;;;;
 ;;;; Helper Definitions
 ;;;;
-
+(require racket/trace)
 
 (define count-args ;function to count number of arguments in a list 
   (lambda (args) ; a list, which consists of a variable number of parameters
@@ -19,49 +19,6 @@
 
   (provide atom?)
 
-;helper function for más: adds together all elements in a list
-;should only ever be passed a list, no need to check input
-(define más-helper
-  (lambda (lis)
-    (cond
-    ((null? lis) 0)
-    ((eq? (count-args lis) 1) (car lis))
-    (else (+ (car lis) (más-helper (cdr lis) )) ) )))
-
-(provide más-helper)
-
-;helper function for menos: subtracts all elements in a list (left to right)
-;should only ever be passed a list, no need to check input
-;should only ever be passed a list of size > 1 (the menos function has a case
-  ;for when the list has a size of 0, 1)
-(define menos-helper
-  (lambda (lis)
-    (cond
-    ((null? lis) 0)
-    ;((eq? (count-args lis) 1) (- 0 (car lis)))
-    (else (- (car lis) (menos-helper (cdr lis) )) ) )))
-
-(provide menos-helper)
-
-;helper function for mult: multiplies all elements in a list together
-;should only ever be passed a list, no need to check input
-(define mult-helper
-  (lambda (lis)
-    (cond
-    ((null? lis) 1)
-    (else (* (car lis) (mult-helper (cdr lis) )) ) )))
-
-(provide mult-helper)
-
-;helper function for div: divides all elements in a list (left ro right)
-;should only ever be passed a list, no need to check input
-(define div-helper
-  (lambda (lis)
-    (cond
-    ((null? lis) 1)
-    (else (/ (car lis) (mult-helper (cdr lis) )) ) )))
-
-(provide div-helper)
 
 ;helper function to throw errors for functions which should not accept lists anywhere in their input parameters
 ;takes a list 'lis' and returns true if any of its elements are lists, false otherwise
@@ -87,11 +44,12 @@
 
 (provide contains-zero)
 
-  ;helper function which returns true if all the arguments in the list lis are lists, and false otherwise
+  ;helper function which returns true if all the arguments in the list lis except the last are lists, and false otherwise
   (define all-lists?
    (lambda (lis)
     (cond
-      ((null? lis) #t)           
+      ((null? lis) #t)
+      ((= (count-args lis) 1) #t)
       ((not (list? (car lis))) #f)  
       (else (all-lists? (cdr lis))))) )
 
@@ -251,14 +209,12 @@
 ;helper function for o
 ;if we see a #t element, return 'cierto, otherwise, if no #t elements present, return 'falso
 (define o-helper
-  (lambda args
+  (lambda (lis)
     (cond
-      ((null? (car args)) 'falso)
-      ((eq? (caar args) #t) ' cierto)
-      ((eq? (car args) 'cierto) 'cierto)
-      ((and (eq? (count-args args) 1) (false? (car args))) 'falso)
-      ((and (eq? (count-args args) 1) (eq? (car args) 'falso)) 'falso)
-      (else (o-helper (cdar args))))))
+      ((null? lis) 'falso)
+      ((or (eq? (car lis) #t) (eq? (car lis) 'cierto)) 'cierto)
+      ((and (not (eq? (car lis) #f)) (not (eq? (car lis) 'falso))) (car lis))
+      (else (o-helper (cdr lis))))))
 
 (provide o-helper)
 
@@ -290,12 +246,12 @@
         ((and (equal? (get-contract proc-id) "((), 0+ of any)")  (not (pair? (car my-args)))) (string-append (format "~a" (car my-args)) ", se espera una lista"))
         ((and (equal? (get-contract proc-id) "number")(not (number? (car my-args)))) (string-append (format "~a" (car my-args)) ", se espera un número"))
         ((and (equal? (get-contract proc-id) "1+ numbers") (not (all-numbers? my-args))) (string-append (format "~a" (non-numeric-item my-args)) ", se espera un número" ))
-        ((and (equal? (get-contract proc-id) "((), (), ...any)") (not (all-lists? (all-but-last my-args)))) (string-append (format "~a" (non-list-item (all-but-last my-args))) ", se espera una lista"))    
+        ((and (equal? (get-contract proc-id) "((), (), ...any)") (not (all-lists? my-args))) (string-append (format "~a" (non-list-item (all-but-last my-args))) ", se espera una lista"))    
         ((and (equal? (get-contract proc-id) "list") (not (list? (car my-args))))  (string-append (format "~a" (car my-args)) ", se espera una lista")) 
         ((and (equal? (get-contract proc-id) "pair") (not (pair? (car my-args))))  (string-append (format "~a" (car my-args)) ", se espera un par")) 
         ((and (equal? (get-contract proc-id) "(())") (not (pair? (caar my-args)))) (string-append (format "~a" (caar my-args)) ", se espera una lista"))
         ((and (equal? (get-contract proc-id) "((()))") (not (pair? (caaar my-args)))) (string-append (format "~a" (caaar my-args)) ", se espera una lista"))
-        ((and (equal? (get-contract proc-id) "(((())))") (not (pair? (caaaar my-args)))) (string-append (format "~a" (caaaar my-args)) ", se espera una lista"))
+        ((and (equal? (get-contract proc-id) "(((())))") (not (pair? (caaaar my-args)))) (string-append (format "~a" (caaaar my-args)) ", se espera una lista")) 
         ((equal? (get-contract proc-id) "string, number, [number]")
             (if (= 3 (length my-args))
                 (if (not (number? (caddr my-args)))
@@ -326,6 +282,7 @@
       ((equal? proc-id "subcadena") "string, number, [number]")
       ((equal? proc-id "concatenar") "((), (), ...any)")
       ((equal? proc-id "concatenar-cadena") "string, string, ...")
+      ((equal? proc-id "juntar") "((), (), ...any)")
       ((or (equal? proc-id "más")(equal? proc-id "menos")(equal? proc-id "div")(equal? proc-id "mult")(equal? proc-id "menos-de")
            (equal? proc-id "más-de") (equal? proc-id "expo")(equal? proc-id "cociente")(equal? proc-id "residuo")
            (equal? proc-id "máx") (equal? proc-id "mín")(equal? proc-id "cociente/residuo")(equal? proc-id "módulo")
