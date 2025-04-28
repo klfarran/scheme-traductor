@@ -13,7 +13,7 @@
       [(más . args)
        #'(inner-más . args)] 
       [más
-       #'(displayln "#<procedimiento:más>")]
+       #'(displayln "#<procedimiento:más>\n   se requiere número, número, ... número")]
       [else
        (error "\nmás: sintaxis no válida")])))
 
@@ -22,8 +22,7 @@
     (if (contract-viol-check args "número número ..." "más")
     (cond
       ((= 0 (count-args args)) 0)
-      ((and (= 1 (count-args args)) (not (list? (car args))) (car args))) ;if given 3, we return 3, but if given (3), its an error
-      (else (más-helper args) ) )
+       (else (apply + args) ) )
        (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
 
   (provide más)
@@ -43,7 +42,7 @@
     (if (and (arity-check (count-args args) -1 "menos") (contract-viol-check args "número número ..." "menos"))
     (cond
       ((= 1 (count-args args)) (- 0 (car args))) 
-      (else (menos-helper args) ) )
+      (else (apply - args) ) )
        (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
 
   (provide menos)
@@ -64,7 +63,7 @@
     (cond
       ((= 0 (count-args args)) 1)
       ((= 1 (count-args args)) (car args))
-      (else (mult-helper args) ) )
+      (else (apply * args) ) )
        (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación") )))
 
   (provide mult)
@@ -84,7 +83,7 @@
     (if (and (arity-check (count-args args) -1 "div") (contract-viol-check args "número número ..." "div") (div-by-zero-check args "div"))
     (cond
       ((= 1 (count-args args)) (/ 1 (car args))) 
-      (else (div-helper args)) )
+      (else (apply / args)) )
        (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
 
   (provide div)
@@ -103,7 +102,7 @@
   (lambda args
     (if (arity-check (count-args args) 1 "¿número-entero?")
     (cond
-     ((integer? (car args)) 'cierto)
+     ((integer? (car args)) 'verdadero)
       ('falso) )
        (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
 
@@ -123,7 +122,7 @@
   (lambda args
     (if (and (arity-check (count-args args) 1 "¿cero?") (contract-viol-check args "número" "¿cero?"))
     (cond
-      ((zero? (car args)) 'cierto)
+      ((zero? (car args)) 'verdadero)
       ('falso) )
        (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
 
@@ -143,7 +142,7 @@
   (lambda args
     (if (and (arity-check (count-args args) 1 "¿positivo?") (contract-viol-check args "número" "¿positivo?"))
     (cond
-      ((positive? (car args)) 'cierto)
+      ((positive? (car args)) 'verdadero)
       ('falso) )
        (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
 
@@ -163,7 +162,7 @@
   (lambda args
     (if (and (arity-check (count-args args) 1 "¿negativo?") (contract-viol-check args "número" "¿negativo?"))
     (cond
-      ((negative? (car args)) 'cierto)
+      ((negative? (car args)) 'verdadero)
       ('falso) )
        (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
 
@@ -184,7 +183,7 @@
   (lambda args
     (if (and (arity-check (count-args args) 1 "¿número-par?") (contract-viol-check args "número" "¿número-par?"))
     (cond
-      ((even? (car args)) 'cierto)
+      ((even? (car args)) 'verdadero)
       ('falso) )
        (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
 
@@ -204,7 +203,7 @@
   (lambda args
     (if (and (arity-check (count-args args) 1 "¿número-impar?") (contract-viol-check args "número" "¿número-impar?") )
     (cond
-      ((odd? (car args)) 'cierto)
+      ((odd? (car args)) 'verdadero)
       (else 'falso) )
        (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
 

@@ -21,7 +21,7 @@
   (lambda args
     (if (arity-check (count-args args) 1 "¿cadena?")
     (cond
-      ((string? (car args)) 'cierto)
+      ((string? (car args)) 'verdadero)
       ('falso) )
         (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
 
@@ -57,7 +57,7 @@
 
 (define inner-subcadena ;substring
   (lambda args
-    (if (and (arity-check (count-args args) "2 or 3" "subcadena") (contract-viol-check args "cadena número número" "subcadena"))
+    (if (and (arity-check (count-args args) "2 or 3" "subcadena") (contract-viol-check args "cadena número [número]" "subcadena"))
         (apply substring args)
         ;(if (= 2 (count-args args))
          ;   (substring (car args) (cadr args))

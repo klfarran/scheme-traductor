@@ -154,15 +154,25 @@
 
 (provide rastrear-definir)
 
-(define-syntax condición
+;(define-syntax condición
+ ; (lambda (stx)
+  ;  (syntax-case stx (sino) ;need to specify sino (else) as a keyword to be recognized in condicion statement (otherwise its an unbound id)
+   ;   [(_ (condition result) ... (sino expr))
+   ;;    #'(cond ((eq? condition 'verdadero) result) ... (else expr))]
+     ; [(_ (condition result) ...)
+      ; #'(cond ((eq? condition 'verdadero) result) ...)]
+     ; [_ 
+      ; (error 'condición "\nsintaxis no válida: se esperaba una lista de condiciones y resultados")])))
+
+ (define-syntax condición
   (lambda (stx)
     (syntax-case stx (sino) ;need to specify sino (else) as a keyword to be recognized in condicion statement (otherwise its an unbound id)
       [(_ (condition result) ... (sino expr))
-       #'(cond ((eq? condition 'cierto) result) ... (else expr))]
+       #'(cond ((eq? condition 'verdadero) result) ... (else expr))]
       [(_ (condition result) ...)
-       #'(cond ((eq? condition 'cierto) result) ...)]
+       #'(cond ((eq? condition 'verdadero) result) ...)]
       [_ 
-       (error 'condición "sintaxis no válida: se esperaba una lista de condiciones y resultados")])))
+       (error "\ncondición: sintaxis no válida: se esperaba una lista de condiciones y resultados")])))
 
 (provide condición)
 
