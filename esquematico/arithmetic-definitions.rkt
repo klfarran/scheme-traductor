@@ -2,7 +2,6 @@
 
 (require "helper-definitions.rkt")
 (require "err-chks.rkt")
-;(require "conditional-definitions.rkt")
 
 ;;;;
 ;;;; Arithmetic Definitions
@@ -103,7 +102,7 @@
   (lambda args
     (if (arity-check (count-args args) 1 "¿número-entero?")
     (cond
-     ((integer? (car args)) 'cierto)
+     ((integer? (car args)) 'verdadero)
       ('falso) )
        (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
 
@@ -123,7 +122,7 @@
   (lambda args
     (if (and (arity-check (count-args args) 1 "¿cero?") (contract-viol-check args "número" "¿cero?"))
     (cond
-      ((zero? (car args)) 'cierto)
+      ((zero? (car args)) 'verdadero)
       ('falso) )
        (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
 
@@ -143,7 +142,7 @@
   (lambda args
     (if (and (arity-check (count-args args) 1 "¿positivo?") (contract-viol-check args "número" "¿positivo?"))
     (cond
-      ((positive? (car args)) 'cierto)
+      ((positive? (car args)) 'verdadero)
       ('falso) )
        (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
 
@@ -163,7 +162,7 @@
   (lambda args
     (if (and (arity-check (count-args args) 1 "¿negativo?") (contract-viol-check args "número" "¿negativo?"))
     (cond
-      ((negative? (car args)) 'cierto)
+      ((negative? (car args)) 'verdadero)
       ('falso) )
        (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
 
@@ -184,7 +183,7 @@
   (lambda args
     (if (and (arity-check (count-args args) 1 "¿número-par?") (contract-viol-check args "número" "¿número-par?"))
     (cond
-      ((even? (car args)) 'cierto)
+      ((even? (car args)) 'verdadero)
       ('falso) )
        (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
 
@@ -204,7 +203,7 @@
   (lambda args
     (if (and (arity-check (count-args args) 1 "¿número-impar?") (contract-viol-check args "número" "¿número-impar?") )
     (cond
-      ((odd? (car args)) 'cierto)
+      ((odd? (car args)) 'verdadero)
       (else 'falso) )
        (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
 

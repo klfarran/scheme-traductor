@@ -3,7 +3,7 @@
 ;;;;
 ;;;; Helper Definitions
 ;;;;
-(require racket/trace)
+
 
 (define count-args ;function to count number of arguments in a list 
   (lambda (args) ; a list, which consists of a variable number of parameters
@@ -143,7 +143,7 @@
 (define menos-de-helper
   (lambda (lis)
     (cond
-      ((= (count-args lis) 1) 'cierto)
+      ((= (count-args lis) 1) 'verdadero)
       ((< (car lis) (cadr lis)) (menos-de-helper (cdr lis)))
       (else 'falso) )))
 
@@ -155,7 +155,7 @@
 (define más-de-helper
   (lambda (lis)
     (cond
-      ((= (count-args lis) 1) 'cierto)
+      ((= (count-args lis) 1) 'verdadero)
       ((> (car lis) (cadr lis)) (más-de-helper (cdr lis)))
       (else 'falso) )))
 
@@ -207,16 +207,29 @@
 (provide concatenar-cadena-helper)
 
 ;helper function for o
-;if we see a #t element, return 'cierto, otherwise, if no #t elements present, return 'falso
+;if we see a #t element, return 'verdadero, otherwise, if no #t elements present, return 'falso
 (define o-helper
   (lambda (lis)
     (cond
       ((null? lis) 'falso)
-      ((or (eq? (car lis) #t) (eq? (car lis) 'cierto)) 'cierto)
+      ((or (eq? (car lis) #t) (eq? (car lis) 'verdadero)) 'verdadero)
       ((and (not (eq? (car lis) #f)) (not (eq? (car lis) 'falso))) (car lis))
       (else (o-helper (cdr lis))))))
 
 (provide o-helper)
+
+;helper function for y
+;if we see a #f element, return 'falso, otherwise, if no #f elements present, return 'verdadero
+;tweak for working with non boolean values (like numbers, for example)
+(define y-helper
+  (lambda (lis)
+    (cond
+      ((null? lis) 'verdadero)
+      ((or (eq? (car lis) #f) (eq? (car lis) 'falso)) 'falso)
+      ((and (not (eq? (car lis) #f)) (not (eq? (car lis) #t))) (car lis))
+      (else (y-helper (cdr lis))))))
+
+(provide y-helper)
 
 
 ;helper function to determine if the given args 'my-args' to the procedure 'proc-id' match the

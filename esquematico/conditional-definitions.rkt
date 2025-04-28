@@ -2,7 +2,6 @@
 
 (require "helper-definitions.rkt")
 (require "err-chks.rkt")
-(require racket/trace)
 
 
 ;;;;
@@ -15,10 +14,6 @@
 
    (provide falso)
 
-(define cierto ;true
-  #t)
-
-   (provide cierto)
 
 (define verdadero ;true
   #t)
@@ -42,7 +37,7 @@
   (lambda args 
    (if (arity-check (count-args args) 2 "¿ig?")
       (cond
-      ((eq? (car args) (cadr args)) 'cierto)
+      ((eq? (car args) (cadr args)) 'verdadero)
       ('falso) )
          (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
 
@@ -62,7 +57,7 @@
   (lambda args 
    (if (arity-check (count-args args) 2 "¿igv?")
       (cond
-      ((eqv? (car args) (cadr args)) 'cierto)
+      ((eqv? (car args) (cadr args)) 'verdadero)
       ('falso) )
         (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
 
@@ -82,7 +77,7 @@
   (lambda args 
    (if (arity-check (count-args args) 2 "¿igual?")
       (cond
-      ((equal? (car args) (cadr args)) 'cierto)
+      ((equal? (car args) (cadr args)) 'verdadero)
       ('falso) )
         (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
 
@@ -125,11 +120,11 @@
   (lambda args 
     (if (arity-check (count-args args) -1 "y")
      (cond 
-      ((null? (car args)) 'cierto) ; no #f element(s)
+      ((null? (car args)) 'verdadero) ; no #f element(s)
       ((eq? (car args) #f) 'falso) ; if any element is `falso`, which evaluates to `#f`, return `falso.
-      ((and (eq? (count-args args) 1) (eq? (car args) #t) 'cierto))
+      ((and (eq? (count-args args) 1) (or (eq? (car args) #t) (eq? (car args) 'verdadero))) 'verdadero)
       ((eq? (count-args args) 1) (car args)) ;only one thing left in the list and its non #t #f, like a number, for example
-      (else (y (cadr args))) )
+      (else (y-helper (cdr args))) )
        (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación"))))
 
    (provide y)
@@ -144,25 +139,13 @@
       [else
        (error "\no: sintaxis no válida")])))
 
-;(define inner-o ;and 
- ; (lambda args
-  ;  (if (arity-check (count-args args) -1 "o")
-   ;  (cond 
-    ;  ((null? (car args)) 'falso) ; at least 1 #t element not found 
-     ; ((eq? (car args) #t) 'cierto) ; if any element is `cierto`, which evaluates to `#t`, return `cierto.
-      ;((eq? (car args) 'cierto) 'cierto)
-  ;    ((and (eq? (count-args args) 1) (false? (car args))) 'falso)
-   ;   ((and (eq? (count-args args) 1) (eq? (car args) 'falso)) 'falso)
-    ;  ((number? (car args)) (car args)) ;only one thing left in the list and its non #t #f, like a number, for example
-     ; (else (o-helper (cdr args))) )
-      ; (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación"))))
 
 (define inner-o ;or 
   (lambda args
     (if (arity-check (count-args args) -1 "o")
      (cond
       ((null? (car args)) 'falso) ; at least 1 #t element not found 
-      ((and (not (false? (car args))) (or (eq? (car args) #t) (eq? (car args) 'cierto))) 'cierto)
+      ((and (not (false? (car args))) (or (eq? (car args) #t) (eq? (car args) 'verdadero))) 'verdadero)
       ((and (not (false? (car args)))  (not (eq? (car args) 'falso)))(car args))
       (else (o-helper (cdr args))) )
        (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación"))))
@@ -182,7 +165,7 @@
 (define inner-no ;not
   (lambda args 
    (if (arity-check (count-args args) 1 "no") 
-       (if (eq? (car args) 'falso) 'cierto 'falso)
+       (if (eq? (car args) 'falso) 'verdadero 'falso)
         (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación") )))
 
    (provide no)
@@ -201,31 +184,31 @@
   (lambda args
     (if (arity-check (count-args args) 1 "¿falso?")
     (cond
-      ((or (false? (car args)) (eq? 'falso (car args))) 'cierto)
+      ((or (false? (car args)) (eq? 'falso (car args))) 'verdadero)
        (else 'falso) )
         (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
 
   (provide ¿falso?)
 
-(define-syntax ¿cierto?
+(define-syntax ¿verdadero?
   (lambda (stx)
     (syntax-case stx ()
-      [(¿cierto? . args)
-       #'(inner-¿cierto? . args)] 
-      [¿cierto?
-       #'(displayln "#<procedimiento:¿cierto?>")]
+      [(¿verdadero? . args)
+       #'(inner-¿verdadero? . args)] 
+      [¿verdadero?
+       #'(displayln "#<procedimiento:¿verdadero?>")]
       [else
-       (error "\n¿cierto?: sintaxis no válida")])))
+       (error "\n¿verdadero?: sintaxis no válida")])))
 
-(define inner-¿cierto? ; functions like true? if scheme included such a procedure
+(define inner-¿verdadero? ; functions like true? if scheme included such a procedure
   (lambda args
-    (if (arity-check (count-args args) 1 "¿cierto?")
+    (if (arity-check (count-args args) 1 "¿verdadero?")
     (cond
-      ((eq? (¿falso? (car args) ) 'cierto) 'falso)
-       (else 'cierto) )
+      ((eq? (¿falso? (car args) ) 'verdadero) 'falso)
+       (else 'verdadero) )
         (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
 
-  (provide ¿cierto?)
+  (provide ¿verdadero?)
 
 
 

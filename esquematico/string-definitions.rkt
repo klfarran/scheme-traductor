@@ -21,7 +21,7 @@
   (lambda args
     (if (arity-check (count-args args) 1 "¿cadena?")
     (cond
-      ((string? (car args)) 'cierto)
+      ((string? (car args)) 'verdadero)
       ('falso) )
         (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
 

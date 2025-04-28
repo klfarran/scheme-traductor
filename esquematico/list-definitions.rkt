@@ -59,7 +59,7 @@
   (lambda args 
    (if (arity-check (count-args args) 1 "¿nulo?") 
     (cond
-      ((null? (car args)) 'cierto) 
+      ((null? (car args)) 'verdadero) 
        (else 'falso))
          (error "error al comprobar si hay errores en la entrada\npor favor consulte la documentación")) ))
 
